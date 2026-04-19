@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="nHcUp-OyqRVsvc3NITxvkpltvh7J4jjQkjK78oifIXM">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator ZUS 2026 | Liber Pro</title>
+<meta name="description" content="Kalkulator ZUS 2026 dla przedsiębiorców: pełny ZUS, preferencyjny, Mały ZUS Plus i składka zdrowotna.">
+<link rel="canonical" href="https://www.liberpro.pl/kalkulator-zus.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.liberpro.pl/kalkulator-zus.html">
+<meta property="og:title" content="Kalkulator ZUS 2026 | Liber Pro Księgowość">
+<meta property="og:description" content="Wylicz składki ZUS dla swojej firmy. Pełny, preferencyjny, Mały ZUS+, tylko zdrowotna — wszystkie formy opodatkowania.">
+<meta property="og:image" content="https://www.liberpro.pl/logo.png">
+<meta property="og:locale" content="pl_PL">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Strona główna","item":"https://www.liberpro.pl/"},
+    {"@type":"ListItem","position":2,"name":"Narzędzia","item":"https://www.liberpro.pl/narzedzia.html"},
+    {"@type":"ListItem","position":3,"name":"Kalkulator ZUS","item":"https://www.liberpro.pl/kalkulator-zus.html"}
+  ]
+}
+</script>
+<!-- Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+</script>
+<script src="cookies.js" defer></script>
+
+<style>
+/* ─── kalkulator ZUS ─── */
+.zus-wrap{max-width:700px;margin:0 auto}
+
+/* karta */
+.zus-card{background:#fff;border-radius:20px;border:1px solid #e2e8f0;overflow:hidden;box-shadow:0 4px 40px rgba(10,37,64,.08)}
+
+/* nagłówek */
+.zus-head{background:#0a2540;padding:28px 36px 24px;position:relative;overflow:hidden}
+.zus-head::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(46,158,114,.1);pointer-events:none}
+.zus-head::after{content:'';position:absolute;left:-20px;bottom:-60px;width:160px;height:160px;border-radius:50%;background:rgba(46,158,114,.06);pointer-events:none}
+.zus-head-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#2e9e72;background:rgba(46,158,114,.15);padding:3px 10px;border-radius:100px;margin-bottom:10px}
+.zus-head h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,26px);color:#fff;line-height:1.25;margin-bottom:6px}
+.zus-head h2 em{font-style:italic;color:#2e9e72}
+.zus-head p{font-size:12px;color:rgba(255,255,255,.45);margin:0}
+
+/* treść */
+.zus-body{padding:30px 36px}
+.zus-desc{font-size:14px;color:#475569;line-height:1.75;margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid #f1f5f9}
+
+/* sekcja */
+.zus-section{padding:20px 0;border-bottom:1px solid #f1f5f9}
+.zus-section:last-of-type{border-bottom:none}
+.zus-section-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:14px}
+
+/* radio grupy */
+.zus-radio-group{display:flex;flex-wrap:wrap;gap:8px}
+.zus-radio{display:none}
+.zus-radio-lbl{display:flex;align-items:center;gap:7px;padding:9px 16px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;font-weight:500;color:#475569;cursor:pointer;transition:all .15s;user-select:none;background:#f8fafc}
+.zus-radio-lbl:hover{border-color:#1a6b4a;color:#1a6b4a;background:#edf7f2}
+.zus-radio:checked+.zus-radio-lbl{background:#0a2540;border-color:#0a2540;color:#fff}
+.zus-radio-dot{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;flex-shrink:0;position:relative;transition:all .15s}
+.zus-radio:checked+.zus-radio-lbl .zus-radio-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:#2e9e72}
+
+/* toggle */
+.zus-toggle-row{display:flex;align-items:center;gap:14px}
+.zus-toggle-lbl-txt{font-size:14px;font-weight:500;color:#0f172a;cursor:pointer;user-select:none}
+.zus-toggle-input{display:none}
+.zus-toggle{width:44px;height:24px;background:#e2e8f0;border-radius:100px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.zus-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .2s}
+.zus-toggle-input:checked~.zus-toggle{background:#1a6b4a}
+.zus-toggle-input:checked~.zus-toggle::after{transform:translateX(20px)}
+
+/* info box */
+.zus-info{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 16px;font-size:12.5px;color:#1e40af;line-height:1.6;display:none;margin-top:10px}
+.zus-info.show{display:block}
+.zus-info a{color:#1e40af;font-weight:600}
+
+/* pole dochodu */
+.zus-income-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.zus-income-input{font-family:'Archivo',sans-serif;font-size:18px;font-weight:600;color:#0f172a;background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:11px 16px;width:160px;outline:none;transition:border-color .15s;-moz-appearance:textfield}
+.zus-income-input::-webkit-inner-spin-button,.zus-income-input::-webkit-outer-spin-button{-webkit-appearance:none}
+.zus-income-input:focus{border-color:#1a6b4a;background:#fff}
+.zus-income-unit{font-size:14px;font-weight:600;color:#94a3b8}
+.zus-income-hint{font-size:12px;color:#94a3b8;margin-top:6px}
+
+/* zakładki wyników */
+.zus-tabs{display:flex;gap:6px;margin-bottom:20px}
+.zus-tab{padding:8px 20px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:600;color:#64748b;background:#f8fafc;cursor:pointer;transition:all .15s}
+.zus-tab.active{background:#0a2540;border-color:#0a2540;color:#fff}
+.zus-tab:hover:not(.active){border-color:#1a6b4a;color:#1a6b4a}
+
+/* wyniki - tabela */
+.zus-results-lbl{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#0a2540;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.zus-results-lbl::after{content:'';flex:1;height:1px;background:#e2e8f0}
+
+.zus-result-card{background:#f0f9f5;border:1.5px solid #c6e8d8;border-radius:14px;overflow:hidden;margin-bottom:10px}
+.zus-result-row{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:12px}
+.zus-result-row+.zus-result-row{border-top:1px solid #d4eddf}
+.zus-result-label{font-size:12px;font-weight:700;color:#1a6b4a;flex:1}
+.zus-result-val{font-family:'Archivo',sans-serif;font-size:20px;font-weight:600;color:#0a2540;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.zus-copy-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:7px;border:1.5px solid #c6e8d8;background:#fff;color:#1a6b4a;cursor:pointer;transition:all .15s;flex-shrink:0}
+.zus-copy-btn:hover{background:#1a6b4a;color:#fff;border-color:#1a6b4a}
+.zus-copy-btn svg{width:13px;height:13px;fill:currentColor}
+
+/* podrozwinięcie składek społecznych */
+.zus-sub-rows{background:#fff;border-top:1px solid #d4eddf;padding:4px 0}
+.zus-sub-row{display:flex;justify-content:space-between;align-items:center;padding:7px 20px 7px 36px;font-size:12px;color:#64748b}
+.zus-sub-row span:last-child{font-weight:500;color:#0f172a;font-variant-numeric:tabular-nums}
+
+/* suma */
+.zus-total-card{background:#0a2540;border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-top:4px;gap:12px}
+.zus-total-lbl{font-size:13px;font-weight:600;color:rgba(255,255,255,.6)}
+.zus-total-val{font-family:'Archivo',sans-serif;font-size:26px;font-weight:600;color:#2e9e72;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px}
+.zus-copy-btn-dark{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:7px;border:1.5px solid rgba(46,158,114,.4);background:transparent;color:#2e9e72;cursor:pointer;transition:all .15s}
+.zus-copy-btn-dark:hover{background:#2e9e72;color:#fff;border-color:#2e9e72}
+.zus-copy-btn-dark svg{width:13px;height:13px;fill:currentColor}
+
+/* wykres */
+.zus-chart{display:none}
+.zus-chart.show{display:block}
+.zus-table-view.hide{display:none}
+.zus-bar-row{margin-bottom:12px}
+.zus-bar-lbl-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px}
+.zus-bar-lbl-row span:first-child{font-weight:600;color:#0f172a}
+.zus-bar-lbl-row span:last-child{font-weight:600;color:#1a6b4a;font-variant-numeric:tabular-nums}
+.zus-bar-track{background:#e2e8f0;border-radius:100px;height:10px;overflow:hidden}
+.zus-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,#1a6b4a,#2e9e72);transition:width .4s ease}
+
+/* placeholder wyników */
+.zus-placeholder{text-align:center;padding:32px 20px;color:#94a3b8;font-size:13px}
+.zus-placeholder svg{width:40px;height:40px;fill:#e2e8f0;margin-bottom:12px;display:block;margin-inline:auto}
+
+/* info o podstawie */
+.zus-base-note{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 16px;font-size:11.5px;color:#64748b;line-height:1.6;margin-top:12px}
+.zus-base-note strong{color:#0f172a}
+
+/* zastrzeżenie */
+.zus-disclaimer{margin-top:24px;padding:14px 0 0;border-top:1px solid #f1f5f9;font-size:10.5px;color:#94a3b8;line-height:1.65}
+.zus-disclaimer p+p{margin-top:5px}
+
+/* stopka */
+.zus-footer{background:#f8fafc;border-top:1px solid #e2e8f0;padding:16px 36px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.zus-footer-txt{font-size:11px;color:#94a3b8}
+.zus-footer-txt strong{color:#1a6b4a}
+.zus-footer-link{font-size:12px;font-weight:600;color:#fff;background:#1a6b4a;padding:8px 18px;border-radius:7px;text-decoration:none;transition:background .15s;white-space:nowrap}
+.zus-footer-link:hover{background:#2e9e72}
+
+/* toast */
+.zus-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#0a2540;color:#fff;font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;padding:10px 20px;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;z-index:9999}
+.zus-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:600px){
+  .zus-head,.zus-body,.zus-footer{padding-left:20px;padding-right:20px}
+  .zus-radio-group{gap:6px}
+  .zus-radio-lbl{padding:8px 12px;font-size:12px}
+  .zus-result-val{font-size:16px}
+  .zus-total-val{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<a href="#content" class="skip-link">Przejdź do treści</a>
+
+<div class="topbar">
+  <div class="topbar-i">
+    <span class="topbar-left">Księgowość firm, kadry i zakładanie działalności – obsługa z całej Polski</span>
+    <div class="topbar-extras"><span class="topbar-extra">Zakładanie JDG</span><span class="topbar-extra">Zakładanie spółek</span></div>
+    <div class="topbar-right">
+      <a href="#" data-email><svg class="ti" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="email-text">kontakt(at)liberpro.pl</span></a>
+      <a href="tel:+48517765128"><svg class="ti" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>+48 517-765-128</a>
+    </div>
+  </div>
+</div>
+
+<nav id="nav"><div class="nav-i">
+  <a href="index.html" class="logo"><img src="logo.png" alt="Liber Pro Księgowość" height="48" width="auto"></a>
+  <ul class="nav-links">
+    <li><a href="o-nas.html">O nas</a></li>
+    <li class="has-sub">
+      <a href="uslugi.html">Usługi</a>
+      <div class="sub-menu"><div class="sub-menu-inner">
+        <a href="ksiegowosc.html">Księgowość</a>
+        <a href="kadry.html">Kadry i Płace</a>
+        <a href="zakladanie-dzialalnosci.html">Zakładanie działalności</a>
+        <a href="zakladanie-spolki.html">Zakładanie spółki</a>
+      </div></div>
+    </li>
+    <li><a href="index.html#specjalizacje">Specjalizacje</a></li>
+    <li><a href="narzedzia.html" class="active">Narzędzia</a></li>
+    <li><a href="index.html#dlaczego-my">Dlaczego my</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <a href="kontakt.html" class="btn-cta">Kontakt</a>
+  <button class="hamburger" onclick="openMenu()" aria-label="Otwórz menu" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
+</div></nav>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" onclick="closeMenu()">Strona główna</a>
+  <a href="o-nas.html" onclick="closeMenu()">O nas</a>
+  <a href="uslugi.html" onclick="closeMenu()">Usługi</a>
+  <a href="index.html#specjalizacje" onclick="closeMenu()">Specjalizacje</a>
+  <a href="narzedzia.html" onclick="closeMenu()">Narzędzia</a>
+  <a href="index.html#dlaczego-my" onclick="closeMenu()">Dlaczego my</a>
+  <a href="blog.html" onclick="closeMenu()">Blog</a>
+  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
+</div>
+
+<main id="content">
+
+<div class="page-hero">
+  <div class="page-hero-i">
+    <div class="breadcrumb">
+      <a href="index.html">Strona główna</a><span>›</span>
+      <a href="narzedzia.html">Narzędzia</a><span>›</span>
+      <span style="color:rgba(255,255,255,.85)">Kalkulator ZUS</span>
+    </div>
+    <h1>Kalkulator <em>składek ZUS</em> 2026</h1>
+    <p class="page-hero-desc">Oblicz miesięczne składki ZUS dla swojej firmy z uwzględnieniem formy opodatkowania, etapu działalności i dobrowolnego ubezpieczenia chorobowego.</p>
+  </div>
+</div>
+
+<section class="section-pad alt">
+  <div class="container">
+    <div class="zus-wrap">
+      <div class="zus-card">
+
+        <!-- nagłówek -->
+        <div class="zus-head">
+          <div class="zus-head-tag">Narzędzie online</div>
+          <h2>Składki ZUS <em>2026</em></h2>
+          <p>Podstawa pełna: 5 652 zł · preferencja: 1 441,80 zł · min. zdrowotna: 432,54 zł</p>
+        </div>
+
+        <div class="zus-body">
+
+          <p class="zus-desc">
+            Nasz kalkulator ZUS pomoże Ci wyliczyć dokładną wysokość składek, które musisz opłacić, biorąc pod uwagę formę opodatkowania oraz przychody Twojej firmy. Uwzględnia pełny ZUS, preferencyjny, Mały ZUS+ oraz tryb tylko zdrowotny (Wakacje od ZUS).
+          </p>
+
+          <!-- rodzaj ZUS -->
+          <div class="zus-section">
+            <div class="zus-section-lbl">Rodzaj ZUS</div>
+            <div class="zus-radio-group" id="grp-rodzaj">
+              <input type="radio" name="rodzaj" id="r-maly"    value="maly"    class="zus-radio">
+              <label for="r-maly"    class="zus-radio-lbl"><span class="zus-radio-dot"></span>Mały ZUS+</label>
+
+              <input type="radio" name="rodzaj" id="r-pref"    value="pref"    class="zus-radio">
+              <label for="r-pref"    class="zus-radio-lbl"><span class="zus-radio-dot"></span>Preferencyjny</label>
+
+              <input type="radio" name="rodzaj" id="r-pelny"   value="pelny"   class="zus-radio" checked>
+              <label for="r-pelny"   class="zus-radio-lbl"><span class="zus-radio-dot"></span>Pełny</label>
+
+              <input type="radio" name="rodzaj" id="r-tylko"   value="tylko"   class="zus-radio">
+              <label for="r-tylko"   class="zus-radio-lbl"><span class="zus-radio-dot"></span>Tylko zdrowotna</label>
+            </div>
+            <div class="zus-info" id="info-wakacje">
+              <strong>Wakacje od ZUS</strong> — Jeśli korzystasz z tego wsparcia, wybierz opcję <em>Tylko zdrowotna</em>. W tym trybie płacisz jedynie składkę zdrowotną, bez składek społecznych.
+            </div>
+            <div class="zus-info" id="info-maly" style="display:none">
+              <strong>Mały ZUS+</strong> — Podstawa wymiaru składek zależy od średniomiesięcznego dochodu z poprzedniego roku (min. 1 441,80 zł, max 5 652 zł). Podaj swój dochód poniżej.
+            </div>
+          </div>
+
+          <!-- chorobowe toggle -->
+          <div class="zus-section" id="sec-chorob">
+            <label class="zus-toggle-row" for="tog-chorob">
+              <input type="checkbox" id="tog-chorob" class="zus-toggle-input" checked>
+              <span class="zus-toggle"></span>
+              <span class="zus-toggle-lbl-txt">Ubezpieczenie chorobowe <span style="font-size:11px;color:#94a3b8;font-weight:400">(dobrowolne — uprawnia do zasiłku)</span></span>
+            </label>
+          </div>
+
+          <!-- forma opodatkowania -->
+          <div class="zus-section">
+            <div class="zus-section-lbl">Sposób rozliczania podatku dochodowego</div>
+            <div class="zus-radio-group" id="grp-forma">
+              <input type="radio" name="forma" id="f-ogolna"  value="ogolna"  class="zus-radio" checked>
+              <label for="f-ogolna"  class="zus-radio-lbl"><span class="zus-radio-dot"></span>Zasady ogólne (skala)</label>
+
+              <input type="radio" name="forma" id="f-liniowy" value="liniowy" class="zus-radio">
+              <label for="f-liniowy" class="zus-radio-lbl"><span class="zus-radio-dot"></span>Liniowy 19%</label>
+
+              <input type="radio" name="forma" id="f-karta"   value="karta"   class="zus-radio">
+              <label for="f-karta"   class="zus-radio-lbl"><span class="zus-radio-dot"></span>Karta podatkowa</label>
+
+              <input type="radio" name="forma" id="f-r60"     value="r60"     class="zus-radio">
+              <label for="f-r60"     class="zus-radio-lbl"><span class="zus-radio-dot"></span>Ryczałt ≤ 60 000 zł/rok</label>
+
+              <input type="radio" name="forma" id="f-r300"    value="r300"    class="zus-radio">
+              <label for="f-r300"    class="zus-radio-lbl"><span class="zus-radio-dot"></span>Ryczałt 60 001–300 000 zł/rok</label>
+
+              <input type="radio" name="forma" id="f-rpow"    value="rpow"    class="zus-radio">
+              <label for="f-rpow"    class="zus-radio-lbl"><span class="zus-radio-dot"></span>Ryczałt > 300 000 zł/rok</label>
+            </div>
+          </div>
+
+          <!-- dochód -->
+          <div class="zus-section" id="sec-dochod">
+            <div class="zus-section-lbl" id="dochod-lbl">Miesięczny dochód netto</div>
+            <div class="zus-income-wrap">
+              <input type="number" id="inp-dochod" class="zus-income-input" placeholder="5 000" min="0" step="100" value="5000">
+              <span class="zus-income-unit">zł</span>
+            </div>
+            <div class="zus-income-hint" id="dochod-hint">Podaj dochód miesięczny (przychód minus koszty)</div>
+          </div>
+
+          <!-- dochód poprzedni rok (Mały ZUS+) -->
+          <div class="zus-section" id="sec-dochod-rok" style="display:none">
+            <div class="zus-section-lbl">Średniomiesięczny dochód z poprzedniego roku</div>
+            <div class="zus-income-wrap">
+              <input type="number" id="inp-dochod-rok" class="zus-income-input" placeholder="4 000" min="0" step="100" value="4000">
+              <span class="zus-income-unit">zł</span>
+            </div>
+            <div class="zus-income-hint">Podstawa Małego ZUS+ (min. 1 441,80 zł — max 5 652 zł)</div>
+          </div>
+
+          <!-- separator wyników -->
+          <div style="height:1px;background:#f1f5f9;margin:8px 0 24px"></div>
+
+          <!-- nagłówek wyników -->
+          <div class="zus-results-lbl">Wysokość twoich składek ZUS</div>
+
+          <!-- zakładki -->
+          <div class="zus-tabs">
+            <button class="zus-tab active" id="tab-tabela" onclick="switchTab('tabela')">Tabela</button>
+            <button class="zus-tab"        id="tab-wykres" onclick="switchTab('wykres')">Wykres</button>
+          </div>
+
+          <!-- widok tabela -->
+          <div id="view-tabela" class="zus-table-view">
+
+            <!-- zdrowotna -->
+            <div class="zus-result-card">
+              <div class="zus-result-row">
+                <span class="zus-result-label" id="lbl-zdrow">Ubezpieczenie zdrowotne</span>
+                <span class="zus-result-val">
+                  <span id="val-zdrow">—</span>
+                  <button class="zus-copy-btn" onclick="zusCopy('val-zdrow')" title="Kopiuj"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+                </span>
+              </div>
+            </div>
+
+            <!-- społeczne + breakdown -->
+            <div class="zus-result-card" id="card-spoeczne">
+              <div class="zus-result-row">
+                <span class="zus-result-label">Ubezpieczenie społeczne</span>
+                <span class="zus-result-val">
+                  <span id="val-spoeczne">—</span>
+                  <button class="zus-copy-btn" onclick="zusCopy('val-spoeczne')" title="Kopiuj"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+                </span>
+              </div>
+              <div class="zus-sub-rows" id="sub-spoeczne">
+                <div class="zus-sub-row"><span>↳ Emerytalna (19,52%)</span><span id="val-em">—</span></div>
+                <div class="zus-sub-row"><span>↳ Rentowa (8,00%)</span><span id="val-re">—</span></div>
+                <div class="zus-sub-row" id="row-ch"><span>↳ Chorobowa (2,45%) <em style="color:#94a3b8;font-size:10px">dob.</em></span><span id="val-ch">—</span></div>
+                <div class="zus-sub-row"><span>↳ Wypadkowa (1,67%)</span><span id="val-wy">—</span></div>
+              </div>
+            </div>
+
+            <!-- FP -->
+            <div class="zus-result-card" id="card-fp">
+              <div class="zus-result-row">
+                <span class="zus-result-label">Fundusz Pracy + Solidarnościowy</span>
+                <span class="zus-result-val">
+                  <span id="val-fp">—</span>
+                  <button class="zus-copy-btn" onclick="zusCopy('val-fp')" title="Kopiuj"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+                </span>
+              </div>
+            </div>
+
+            <!-- suma -->
+            <div class="zus-total-card">
+              <span class="zus-total-lbl">Suma składek ZUS / miesiąc</span>
+              <span class="zus-total-val">
+                <span id="val-total">—</span>
+                <button class="zus-copy-btn-dark" onclick="zusCopy('val-total')" title="Kopiuj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+              </span>
+            </div>
+
+            <!-- nota o podstawie -->
+            <div class="zus-base-note" id="note-base"></div>
+
+          </div><!-- /view-tabela -->
+
+          <!-- widok wykresu -->
+          <div id="view-wykres" class="zus-chart">
+            <div id="chart-bars"></div>
+            <div class="zus-total-card" style="margin-top:16px">
+              <span class="zus-total-lbl">Suma składek ZUS / miesiąc</span>
+              <span class="zus-total-val"><span id="val-total-chart">—</span></span>
+            </div>
+          </div>
+
+          <!-- zastrzeżenie -->
+          <div class="zus-disclaimer">
+            <p>Niniejszy kalkulator ma charakter wyłącznie poglądowy. Wyniki uzyskane za jego pomocą nie mają charakteru wiążącego i nie mogą stanowić podstawy jakichkolwiek roszczeń wobec LIBERPRO Monika Cichoń.</p>
+            <p>Przedstawione wyliczenia nie stanowią rekomendacji ani porady prawnej, podatkowej lub finansowej. Rzeczywista sytuacja podatkowa zależy od indywidualnych uwarunkowań prawnych, finansowych oraz faktycznych danego podmiotu.</p>
+            <p>LIBERPRO Monika Cichoń nie ponosi odpowiedzialności za skutki decyzji podjętych na podstawie wyników uzyskanych z kalkulatora.</p>
+          </div>
+
+        </div><!-- /zus-body -->
+
+        <div class="zus-footer">
+          <span class="zus-footer-txt">Kalkulator <strong>Liber Pro Księgowość</strong></span>
+          <a href="kontakt.html" class="zus-footer-link">Rozmowa wstępna →</a>
+        </div>
+
+      </div><!-- /zus-card -->
+    </div><!-- /zus-wrap -->
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="cta-i">
+    <div class="cta-text">
+      <h2>Masz pytania dotyczące składek ZUS?</h2>
+      <p>Pomożemy dobrać optymalną formę opodatkowania i zadbamy o Twoje rozliczenia.</p>
+    </div>
+    <a href="kontakt.html" class="btn-white">Rozmowa wstępna</a>
+  </div>
+</div>
+
+</main>
+
+<footer><div class="footer-grid">
+  <div><img src="logo.png" alt="Liber Pro Księgowość" style="height:48px;width:auto;margin-bottom:12px;filter:brightness(0) invert(1);opacity:.85"><p class="f-tagline">Twoje finanse w dobrych rękach.<br>Razem budujemy Twój sukces.</p></div>
+  <div class="f-col"><h4>Na skróty</h4><div class="f-links"><a href="o-nas.html">O nas</a><a href="uslugi.html">Usługi</a><a href="narzedzia.html">Narzędzia</a><a href="kontakt.html">Kontakt</a></div></div>
+  <div class="f-col"><h4>Usługi</h4><div class="f-links"><a href="ksiegowosc.html">Księgowość</a><a href="kadry.html">Kadry i Płace</a><a href="zakladanie-dzialalnosci.html">Zakładanie działalności</a><a href="zakladanie-spolki.html">Zakładanie spółki</a></div></div>
+  <div class="f-col"><h4>Kontakt</h4>
+    <div class="f-ci"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:+48517765128">+48 517-765-128</a></div>
+    <div class="f-ci"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="#" data-email><span class="email-text">kontakt(at)liberpro.pl</span></a></div>
+    <div class="f-ci"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg><span>Pon.–Pt.: 8:00–16:00</span></div>
+  </div>
+</div><div class="footer-bottom"><span>© 2026 Liber Pro Księgowość. Wszelkie prawa zastrzeżone.</span><span>liberpro.pl</span><span><a href="polityka-prywatnosci.html" style="color:inherit;text-decoration:none;opacity:.7">Polityka prywatności</a></span></div></footer>
+
+<div class="zus-toast" id="zus-toast">Skopiowano do schowka ✓</div>
+
+<script>
+(function(){
+  /* ─── stałe 2026 ─── */
+  var Z={
+    PELNA:5652, PREF:1441.80, MIN:4806, MZDR:432.54,
+    EM:0.1952, RE:0.08, CH:0.0245, WY:0.0167, FP:0.0245
+  };
+
+  var fmt=function(v){return new Intl.NumberFormat('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v)+' zł';};
+  var fmtN=function(v){return new Intl.NumberFormat('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v);};
+
+  /* ─── zdrowotna ─── */
+  function zdrow(forma, dochod){
+    if(forma==='ogolna')  return Math.max(Z.MZDR, dochod*0.09);
+    if(forma==='liniowy') return Math.max(Z.MZDR, dochod*0.049);
+    if(forma==='r60')     return Z.MZDR;
+    if(forma==='r300')    return 622.93;
+    if(forma==='rpow')    return 1121.28;
+    return Z.MZDR; // karta
+  }
+  function zdrowLabel(forma){
+    var m={ogolna:'9% dochodu, min. 432,54 zł',liniowy:'4,9% dochodu, min. 432,54 zł',
+      r60:'ryczałt, przychód ≤ 60 000 zł/rok',r300:'ryczałt, 60 001–300 000 zł/rok',
+      rpow:'ryczałt, przychód > 300 000 zł/rok',karta:'karta podatkowa — kwota stała'};
+    return 'Ubezpieczenie zdrowotne (' + (m[forma]||'') + ')';
+  }
+
+  /* ─── główna kalkulacja ─── */
+  function calc(){
+    var rodzaj = document.querySelector('input[name="rodzaj"]:checked').value;
+    var forma  = document.querySelector('input[name="forma"]:checked').value;
+    var dochod = parseFloat(document.getElementById('inp-dochod').value)||0;
+    var dochodRok = parseFloat(document.getElementById('inp-dochod-rok').value)||0;
+    var chorob = document.getElementById('tog-chorob').checked;
+
+    /* podstawa składek społecznych */
+    var podst = 0;
+    if(rodzaj==='pref')  podst = Z.PREF;
+    else if(rodzaj==='pelny') podst = Z.PELNA;
+    else if(rodzaj==='maly'){
+      var dm = dochodRok||3000;
+      podst = Math.min(Z.PELNA, Math.max(Z.PREF, dm*0.5));
+    }
+    /* tylko zdrowotna → podst=0 */
+
+    /* składki społeczne */
+    var em=0,re=0,ch=0,wy=0,fp=0;
+    if(rodzaj!=='tylko'){
+      em = podst*Z.EM;
+      re = podst*Z.RE;
+      ch = chorob ? podst*Z.CH : 0;
+      wy = podst*Z.WY;
+      fp = (rodzaj==='pelny' && podst>=Z.MIN) ? podst*Z.FP : 0;
+    }
+    var spoeczne = em+re+ch+wy;
+
+    /* zdrowotna */
+    var zd = zdrow(forma, dochod);
+
+    var total = spoeczne + fp + zd;
+
+    /* ─── UI ─── */
+    set('val-zdrow', fmt(zd));
+    set('lbl-zdrow', zdrowLabel(forma));
+    set('val-spoeczne', fmt(spoeczne));
+    set('val-em', fmt(em));
+    set('val-re', fmt(re));
+    set('val-ch', chorob ? fmt(ch) : '— nie opłacam');
+    set('val-wy', fmt(wy));
+    set('val-fp', fp>0 ? fmt(fp) : '— nie dotyczy');
+    set('val-total', fmtN(total)+' zł');
+    set('val-total-chart', fmtN(total)+' zł');
+
+    /* nota o podstawie */
+    var stLabel={pelny:'Pełny ZUS',pref:'Preferencyjny',maly:'Mały ZUS+',tylko:'Tylko zdrowotna'};
+    set('note-base',
+      '<strong>'+stLabel[rodzaj]+'</strong> · Podstawa składek społecznych: <strong>'+fmt(podst)+'</strong> · ' +
+      'Wyniki orientacyjne. Podstawy 2026: min. wynagrodzenie 4 806 zł · pełna 5 652 zł · min. zdrowotna 432,54 zł.'
+    );
+
+    /* ─── wykres ─── */
+    var bars=[
+      {lbl:'Ubezpieczenie zdrowotne', val:zd},
+      {lbl:'Emerytalna (19,52%)', val:em},
+      {lbl:'Rentowa (8,00%)', val:re},
+      {lbl:'Chorobowa (2,45%)', val:ch},
+      {lbl:'Wypadkowa (1,67%)', val:wy},
+      {lbl:'Fundusz Pracy (2,45%)', val:fp}
+    ].filter(function(b){return b.val>0;});
+
+    var maxVal = total>0 ? total : 1;
+    var html = bars.map(function(b){
+      var pct = Math.max(2, (b.val/maxVal*100)).toFixed(1);
+      return '<div class="zus-bar-row">' +
+        '<div class="zus-bar-lbl-row"><span>'+b.lbl+'</span><span>'+fmtN(b.val)+' zł</span></div>'+
+        '<div class="zus-bar-track"><div class="zus-bar-fill" style="width:'+pct+'%"></div></div>'+
+        '</div>';
+    }).join('');
+    document.getElementById('chart-bars').innerHTML = html||'<div class="zus-placeholder">Brak składek do wyświetlenia</div>';
+
+    /* widoczność karty FP i społeczne */
+    document.getElementById('card-spoeczne').style.display = rodzaj==='tylko' ? 'none' : '';
+    document.getElementById('card-fp').style.display = fp>0 ? '' : 'none';
+    document.getElementById('sub-spoeczne').style.display = rodzaj==='tylko' ? 'none' : '';
+  }
+
+  function set(id, val){
+    var el = document.getElementById(id);
+    if(el) el.innerHTML = val;
+  }
+
+  /* ─── UI reaktywność ─── */
+  document.querySelectorAll('input[name="rodzaj"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      var v = r.value;
+      /* info boxy */
+      document.getElementById('info-wakacje').className = 'zus-info'+(v==='tylko'?' show':'');
+      document.getElementById('info-maly').style.display = v==='maly'?'block':'none';
+      /* mały ZUS rok */
+      document.getElementById('sec-dochod-rok').style.display = v==='maly'?'':' none';
+      /* toggle chorobowe — ukryj dla "tylko zdrowotna" */
+      document.getElementById('sec-chorob').style.display = v==='tylko'?'none':'';
+      calc();
+    });
+  });
+
+  document.querySelectorAll('input[name="forma"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      var v = r.value;
+      var lbl = document.getElementById('dochod-lbl');
+      var hint = document.getElementById('dochod-hint');
+      var sec = document.getElementById('sec-dochod');
+      if(v==='karta'){
+        sec.style.display='none';
+      } else {
+        sec.style.display='';
+        if(v==='r60'||v==='r300'||v==='rpow'){
+          lbl.textContent='Miesięczne przychody (ryczałt)';
+          hint.textContent='Podaj miesięczny przychód — nie dochód (bez odliczania kosztów)';
+        } else {
+          lbl.textContent='Miesięczny dochód netto';
+          hint.textContent='Podaj dochód miesięczny (przychód minus koszty)';
+        }
+      }
+      calc();
+    });
+  });
+
+  document.getElementById('tog-chorob').addEventListener('change', calc);
+  document.getElementById('inp-dochod').addEventListener('input', calc);
+  document.getElementById('inp-dochod-rok').addEventListener('input', calc);
+
+  /* ─── zakładki ─── */
+  window.switchTab = function(tab){
+    document.getElementById('tab-tabela').className = 'zus-tab'+(tab==='tabela'?' active':'');
+    document.getElementById('tab-wykres').className = 'zus-tab'+(tab==='wykres'?' active':'');
+    document.getElementById('view-tabela').className = 'zus-table-view'+(tab!=='tabela'?' hide':'');
+    document.getElementById('view-wykres').className = 'zus-chart'+(tab==='wykres'?' show':'');
+  };
+
+  /* ─── kopiowanie ─── */
+  window.zusCopy = function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var txt = el.textContent.trim();
+    navigator.clipboard.writeText(txt).catch(function(){
+      var ta=document.createElement('textarea');
+      ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+    var t=document.getElementById('zus-toast');
+    t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show');},2000);
+  };
+
+  /* inicjalizacja */
+  calc();
+})();
+</script>
+
+<script>
+window.addEventListener('scroll',function(){var n=document.getElementById('nav');if(n)n.classList.toggle('scrolled',scrollY>20);});
+function openMenu(){var m=document.getElementById('mobMenu');if(m){m.classList.add('open');var h=document.querySelector('.hamburger');if(h)h.setAttribute('aria-expanded','true');}}
+function closeMenu(){var m=document.getElementById('mobMenu');if(m){m.classList.remove('open');var h=document.querySelector('.hamburger');if(h)h.setAttribute('aria-expanded','false');}}
+(function(){
+  var p=window.location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.nav-links a,.sub-menu-inner a').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(!h||h.charAt(0)==='#'||h.indexOf('#')!==-1)return;
+    if(h.split('/').pop()===p)a.classList.add('active');
+  });
+})();
+(function(){
+  var u='kontakt',d='liberpro.pl',e=u+'@'+d;
+  document.querySelectorAll('[data-email]').forEach(function(el){
+    el.setAttribute('href','mailto:'+e);
+    if(el.querySelector('.email-text'))el.querySelector('.email-text').textContent=e;
+  });
+})();
+</script>
+
+</body>
+</html>

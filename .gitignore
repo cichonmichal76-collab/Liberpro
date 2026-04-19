@@ -1,0 +1,5 @@
+e2e-*.png
+liberpro-deploy-*.zip
+liberpro-deploy-*/
+Thumbs.db
+.DS_Store

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalkulatory księgowe i podatkowe 2026 | Liber Pro</title>
+<meta name="description" content="Kalkulatory księgowe i podatkowe 2026: ZUS, VAT, wynagrodzenie i inne narzędzia pomocne przy prowadzeniu firmy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a2540;--navy-mid:#0f3460;--navy-light:#eef3f9;--accent:#1a6b4a;--accent-mid:#2e9e72;--accent-light:#e8f5f0;--ink:#0f172a;--ink-mid:#475569;--ink-light:#94a3b8;--white:#ffffff;--surface:#f1f5f9;--border:#e2e8f0;--r-sm:6px;--r-md:12px;--r-lg:20px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--container:1200px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo',sans-serif;color:var(--ink);background:var(--white);font-size:15px;line-height:1.6}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 var(--s4)}
+.nav-i{max-width:var(--container);margin:0 auto;display:flex;align-items:center;height:64px}
+.logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);text-decoration:none}
+.logo span{color:var(--accent)}
+.back-link{margin-left:auto;font-size:13px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;font-weight:500}
+.page-hero{background:var(--navy);padding:var(--s5) 0;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(46,158,114,.18),transparent 60%)}
+.phi{max-width:var(--container);margin:0 auto;padding:0 var(--s4);position:relative;z-index:1}
+.sec-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-mid);background:rgba(46,158,114,.15);padding:3px 10px;border-radius:100px;margin-bottom:var(--s2)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);color:var(--white);margin-bottom:10px;line-height:1.2}
+.page-hero h1 em{font-style:italic;color:var(--accent-mid)}
+.page-hero p{color:rgba(255,255,255,.7);font-size:15px}
+.badges{margin-top:var(--s3);display:flex;gap:var(--s3);flex-wrap:wrap}
+.hb{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.55);font-size:12px}
+.hb svg{width:13px;height:13px;fill:var(--accent-mid)}
+.cnav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:90}
+.cnav-i{max-width:var(--container);margin:0 auto;padding:0 var(--s4);display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.ctab{padding:14px 18px;font-size:13px;font-weight:500;color:var(--ink-mid);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s;font-family:'Archivo',sans-serif}
+.ctab:hover{color:var(--navy)}
+.ctab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.cmain{max-width:var(--container);margin:0 auto;padding:var(--s5) var(--s4);display:grid;grid-template-columns:1fr 360px;gap:var(--s5);align-items:start}
+.cpanel{display:none}.cpanel.active{display:block}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4);margin-bottom:var(--s3)}
+.ct{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:6px}
+.cs{font-size:13px;color:var(--ink-mid);margin-bottom:var(--s4);line-height:1.6}
+.fg{margin-bottom:var(--s3)}
+.fl{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.fh{font-size:11px;color:var(--ink-light);margin-bottom:5px;line-height:1.5}
+.fi{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:15px;font-family:'Archivo',sans-serif;color:var(--ink);background:var(--white);transition:border-color .15s;outline:none}
+.fi:focus{border-color:var(--accent)}
+.fs{width:100%;padding:10px 36px 10px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;font-family:'Archivo',sans-serif;color:var(--ink);background:var(--white);cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23475569'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:border-color .15s}
+.fs:focus{border-color:var(--accent)}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.cbrow{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;font-size:13px;color:var(--ink-mid)}
+.cbrow input{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+.btn{width:100%;background:var(--accent);color:var(--white);border:none;padding:13px;border-radius:var(--r-sm);font-size:15px;font-weight:600;font-family:'Archivo',sans-serif;cursor:pointer;transition:background .2s,transform .1s;margin-top:var(--s2)}
+.btn:hover{background:var(--accent-mid);transform:translateY(-1px)}
+.rc{background:var(--navy);border-radius:var(--r-lg);padding:var(--s4);display:none;margin-top:var(--s3)}
+.rc.show{display:block;animation:fi .25s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rst{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-bottom:8px;margin-top:var(--s3)}
+.rst:first-child{margin-top:0}
+.rr{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.rr:last-child{border-bottom:none}
+.rr.rsum{padding:12px 0;border-top:2px solid rgba(255,255,255,.12);border-bottom:none;margin-top:4px}
+.rr.rgrand{padding:12px 14px;border:none;background:rgba(46,158,114,.1);border-radius:var(--r-sm);margin-top:8px}
+.rl{font-size:13px;color:rgba(255,255,255,.6)}
+.rv{font-size:14px;font-weight:600;color:var(--white)}
+.rr.rsum .rl{color:rgba(255,255,255,.85);font-size:13px}
+.rr.rsum .rv{font-size:16px}
+.rr.rgrand .rl{color:rgba(255,255,255,.9);font-weight:600;font-size:14px}
+.rr.rgrand .rv{font-size:20px;color:var(--accent-mid)}
+.rbadge{font-size:10px;font-weight:600;padding:1px 7px;border-radius:100px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.55)}
+.rdbadge{background:rgba(239,159,39,.2);color:#F9CB42}
+.rnote{margin-top:var(--s3);font-size:11px;color:rgba(255,255,255,.3);line-height:1.7;border-top:1px solid rgba(255,255,255,.07);padding-top:var(--s2)}
+.ctbl{width:100%;border-collapse:collapse}
+.ctbl th{background:var(--navy);color:var(--white);padding:10px 14px;font-size:12px;font-weight:600;text-align:left}
+.ctbl td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+.ctbl tr.best td{background:var(--accent-light);font-weight:600;color:var(--accent)}
+.sbc{border-radius:var(--r-lg);padding:var(--s3);margin-bottom:var(--s3);border:1px solid var(--border)}
+.sbt{font-size:13px;font-weight:600;margin-bottom:var(--s2)}
+.sbr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:0.5px solid var(--border);font-size:12px}
+.sbr:last-child{border-bottom:none}
+.sbl{color:var(--ink-mid)}
+.sbv{font-weight:600;color:var(--ink)}
+.sbva{color:var(--accent)}
+.ibox{background:var(--accent-light);border:1px solid rgba(26,107,74,.2);border-radius:var(--r-lg);padding:var(--s3);margin-bottom:var(--s3)}
+.ibox h3{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:8px}
+.ibox p{font-size:12px;color:var(--ink-mid);line-height:1.7}
+@media(max-width:900px){.cmain{grid-template-columns:1fr}.sbcol{display:none}}
+@media(max-width:600px){.fr{grid-template-columns:1fr}.page-hero h1{font-size:26px}.ctab{padding:12px 12px;font-size:12px}}
+.cdisclaimer{margin-top:16px;padding:12px 16px;border-top:1px solid var(--border);font-size:10.5px;color:var(--ink-light);line-height:1.6}
+.cdisclaimer p+p{margin-top:5px}
+</style>
+</head>
+<body>
+<nav><div class="nav-i">
+  <a href="index.html" class="logo">Liber <span>Pro</span></a>
+  <a href="index.html" class="back-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>Powrót</a>
+</div></nav>
+
+<div class="page-hero"><div class="phi">
+  <div class="sec-tag">Narzędzia</div>
+  <h1>Kalkulatory <em>podatkowe</em> 2026</h1>
+  <p>Szybkie obliczenia bez rejestracji. Dane aktualne na 2026 rok.</p>
+  <div class="badges">
+    <div class="hb"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Bezpłatne</div>
+    <div class="hb"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Bez rejestracji</div>
+    <div class="hb"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>Dane 2026</div>
+  </div>
+</div></div>
+
+<div class="cnav"><div class="cnav-i">
+  <button class="ctab active" onclick="sw('zus',this)">Składki ZUS</button>
+  <button class="ctab" onclick="sw('forma',this)">Forma opodatkowania</button>
+  <button class="ctab" onclick="sw('vat',this)">VAT brutto–netto</button>
+  <button class="ctab" onclick="sw('wyn',this)">Wynagrodzenie</button>
+</div></div>
+
+<div class="cmain">
+<div>
+
+<!-- ZUS -->
+<div id="p-zus" class="cpanel active">
+<div class="card">
+  <div class="ct">Kalkulator składek ZUS 2026</div>
+  <div class="cs">Wybierz status i formę opodatkowania — kalkulator wyliczy każdą składkę osobno.</div>
+
+  <div class="fg">
+    <label class="fl">Twój status</label>
+    <select class="fs" id="z-status" onchange="zOnStatus()">
+      <option value="start">Ulga na start — pierwsze 6 miesięcy działalności</option>
+      <option value="pref">Preferencyjny ZUS — 7.–30. miesiąc działalności</option>
+      <option value="pelny">Pełny ZUS — standardowy (po 30 miesiącach)</option>
+      <option value="maly">Mały ZUS Plus — roczny przychód do 120 000 zł</option>
+    </select>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Forma opodatkowania</label>
+    <select class="fs" id="z-forma" onchange="zOnForma()">
+      <option value="ogolna">Zasady ogólne — skala podatkowa 12%/32%</option>
+      <option value="liniowy">Podatek liniowy — 19%</option>
+      <option value="r60">Ryczałt — przychód roczny do 60 000 zł</option>
+      <option value="r300">Ryczałt — przychód roczny 60 001–300 000 zł</option>
+      <option value="rpow">Ryczałt — przychód roczny powyżej 300 000 zł</option>
+      <option value="karta">Karta podatkowa</option>
+    </select>
+  </div>
+
+  <div class="fg" id="zg-dochod">
+    <label class="fl">Dochód miesięczny (zł)</label>
+    <div class="fh">Podstawa składki zdrowotnej = przychód minus koszty</div>
+    <input type="number" class="fi" id="z-dochod" placeholder="np. 8 000" min="0">
+  </div>
+
+  <div class="fg" id="zg-dochod-rok" style="display:none">
+    <label class="fl">Średniomiesięczny dochód z poprzedniego roku (zł)</label>
+    <div class="fh">Podstawa wymiaru Małego ZUS+ (min. 1 441,80 zł — max. 5 652,00 zł)</div>
+    <input type="number" class="fi" id="z-dochod-rok" placeholder="np. 4 000" min="0">
+  </div>
+
+  <div class="fg">
+    <label class="fl">Opcje</label>
+    <label class="cbrow"><input type="checkbox" id="z-chorob" checked> Opłacam dobrowolną składkę chorobową <span style="font-size:11px;color:var(--ink-light);margin-left:4px">(uprawnia do zasiłku)</span></label>
+    <label class="cbrow" id="zr-fp-row"><input type="checkbox" id="z-fp" checked> Opłacam Fundusz Pracy i Fundusz Solidarnościowy (2,45%)</label>
+  </div>
+
+  <button class="btn" onclick="calcZUS()">Oblicz składki ZUS →</button>
+
+  <div id="rc-zus" class="rc">
+    <div class="rst">Składki społeczne</div>
+    <div class="rr" id="zrow-em"><span class="rl">Emerytalna (19,52%)</span><span class="rv" id="zv-em">—</span></div>
+    <div class="rr" id="zrow-re"><span class="rl">Rentowa (8,00%)</span><span class="rv" id="zv-re">—</span></div>
+    <div class="rr" id="zrow-ch"><span class="rl">Chorobowa (2,45%) <span class="rbadge rdbadge">dobrowolna</span></span><span class="rv" id="zv-ch">—</span></div>
+    <div class="rr" id="zrow-wy"><span class="rl">Wypadkowa (1,67%)</span><span class="rv" id="zv-wy">—</span></div>
+    <div class="rr" id="zrow-fp"><span class="rl">Fundusz Pracy + Fund. Solidarnościowy (2,45%)</span><span class="rv" id="zv-fp">—</span></div>
+    <div class="rr rsum"><span class="rl">Suma składek społecznych</span><span class="rv" id="zv-sp">—</span></div>
+    <div class="rst">Składka zdrowotna</div>
+    <div class="rr"><span class="rl" id="zl-zdrow">Składka zdrowotna</span><span class="rv" id="zv-zdrow">—</span></div>
+    <div class="rr rgrand"><span class="rl">ŁĄCZNE SKŁADKI ZUS</span><span class="rv" id="zv-tot">—</span></div>
+    <div class="rnote" id="zv-info"></div>
+  </div>
+</div>
+
+<div class="card" style="background:var(--surface);border-color:transparent">
+  <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:10px">Porównanie etapów — łączne składki ZUS 2026</div>
+  <div style="overflow-x:auto">
+    <table class="ctbl">
+      <tr><th>Etap</th><th>Społ. (z chorob.)</th><th>Min. zdrowotna</th><th>Łącznie</th></tr>
+      <tr><td>Ulga na start (6 mies.)</td><td>0,00 zł</td><td>432,54 zł</td><td><b>432,54 zł</b></td></tr>
+      <tr><td>Pref. ZUS (24 mies.)</td><td>456,19 zł</td><td>432,54 zł</td><td><b>~889 zł</b></td></tr>
+      <tr><td>Mały ZUS Plus</td><td>od 456,19 zł</td><td>od 432,54 zł</td><td><b>od ~889 zł</b></td></tr>
+      <tr class="best"><td>Pełny ZUS</td><td>1 926,77 zł</td><td>432,54 zł+</td><td><b>~2 360 zł+</b></td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- FORMA -->
+<div id="p-forma" class="cpanel">
+<div class="card">
+  <div class="ct">Która forma opodatkowania jest najlepsza?</div>
+  <div class="cs">Porównanie ryczałtu, podatku liniowego i skali podatkowej.</div>
+  <div class="fr">
+    <div class="fg"><label class="fl">Miesięczny przychód (zł)</label><input type="number" class="fi" id="f-prz" placeholder="np. 15 000"></div>
+    <div class="fg"><label class="fl">Miesięczne koszty (zł)</label><div class="fh">Leasing, biuro, sprzęt…</div><input type="number" class="fi" id="f-kos" placeholder="np. 3 000"></div>
+  </div>
+  <div class="fg">
+    <label class="fl">Stawka ryczałtu</label>
+    <select class="fs" id="f-rycz">
+      <option value="0.12">12% – IT, programowanie, usługi techniczne</option>
+      <option value="0.085">8,5% – większość usług ogólnych</option>
+      <option value="0.15">15% – pośrednictwo, wolne zawody</option>
+      <option value="0.145">14% – usługi medyczne, architektoniczne</option>
+      <option value="0.055">5,5% – działalność wytwórcza, roboty budowlane</option>
+      <option value="0.03">3% – handel, gastronomia</option>
+    </select>
+  </div>
+  <div class="fg">
+    <label class="fl">Etap ZUS</label>
+    <select class="fs" id="f-zus">
+      <option value="0">Ulga na start (0 zł)</option>
+      <option value="456">Preferencyjny ZUS (~456 zł/mies.)</option>
+      <option value="1927">Pełny ZUS (~1 927 zł/mies.)</option>
+    </select>
+  </div>
+  <button class="btn" onclick="calcForma()">Porównaj formy →</button>
+  <div id="rc-forma" class="rc"><div class="rst">Netto do kieszeni miesięcznie</div><div id="forma-rows"></div><div class="rnote">Wyniki orientacyjne. Nie uwzględniają ulg.</div></div>
+</div>
+<div id="cd-forma" style="display:none"><div class="card"><div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:12px">Szczegółowe porównanie</div><div style="overflow-x:auto"><table class="ctbl" id="forma-tbl"></table></div></div></div>
+</div>
+
+<!-- VAT -->
+<div id="p-vat" class="cpanel">
+<div class="card">
+  <div class="ct">Kalkulator VAT brutto–netto</div>
+  <div class="cs">Przelicz kwotę netto na brutto lub odwrotnie.</div>
+  <div class="fg"><label class="fl">Stawka VAT</label>
+    <select class="fs" id="v-st">
+      <option value="0.23">23% – podstawowa</option>
+      <option value="0.08">8% – budownictwo, gastronomia, leki</option>
+      <option value="0.05">5% – żywność, książki, e-booki</option>
+      <option value="0.00">0% / ZW – eksport, zwolnione</option>
+    </select></div>
+  <div class="fg"><label class="fl">Kierunek</label>
+    <select class="fs" id="v-kier" onchange="document.getElementById('v-lbl').textContent=this.value==='netto'?'Kwota netto (zł)':'Kwota brutto (zł)'">
+      <option value="netto">Znam NETTO — oblicz brutto</option>
+      <option value="brutto">Znam BRUTTO — oblicz netto</option>
+    </select></div>
+  <div class="fg"><label class="fl" id="v-lbl">Kwota netto (zł)</label><input type="number" class="fi" id="v-kwota" placeholder="np. 1000"></div>
+  <button class="btn" onclick="calcVAT()">Oblicz →</button>
+  <div id="rc-vat" class="rc"><div id="vat-rows"></div></div>
+</div>
+<div class="card" style="background:var(--surface);border-color:transparent">
+  <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">Limit zwolnienia z VAT 2026</div>
+  <p style="font-size:13px;color:var(--ink-mid);line-height:1.7"><strong>200 000 zł</strong> przychodu rocznie. Po przekroczeniu rejestracja obowiązkowa. Wcześniejsza rejestracja bywa korzystna przy sprzedaży B2B.</p>
+</div>
+</div>
+
+<!-- WYNAGRODZENIE -->
+<div id="p-wyn" class="cpanel">
+<div class="card">
+  <div class="ct">Wynagrodzenie brutto–netto 2026</div>
+  <div class="cs">Oblicz kwotę na rękę i koszt pracodawcy. Min. wynagrodzenie 2026: 4 806 zł brutto.</div>
+  <div class="fg"><label class="fl">Wynagrodzenie brutto (zł)</label><input type="number" class="fi" id="w-br" placeholder="np. 6000"></div>
+  <div class="fr">
+    <div class="fg"><label class="fl">Rodzaj umowy</label>
+      <select class="fs" id="w-um">
+        <option value="praca">Umowa o pracę</option>
+        <option value="zlecenie">Umowa zlecenie (ze składkami)</option>
+        <option value="student">Umowa zlecenie — student do 26 lat</option>
+      </select></div>
+    <div class="fg"><label class="fl">KUP</label>
+      <select class="fs" id="w-kup">
+        <option value="250">250 zł — standardowe</option>
+        <option value="300">300 zł — podwyższone (dojazd)</option>
+      </select></div>
+  </div>
+  <div class="fg"><label class="fl">Ulga podatkowa</label>
+    <select class="fs" id="w-ulga">
+      <option value="300">PIT-2 złożony — 300 zł/mies.</option>
+      <option value="0">Brak PIT-2</option>
+    </select></div>
+  <button class="btn" onclick="calcWyn()">Oblicz →</button>
+  <div id="rc-wyn" class="rc"><div id="wyn-rows"></div><div class="rnote">Orientacyjnie. Nie uwzględnia ulgi dla młodych, 4+ ani seniorów.</div></div>
+</div>
+</div>
+
+</div><!-- end content -->
+
+<!-- SIDEBAR -->
+<div class="sbcol">
+  <div class="ibox"><h3>Potrzebujesz dokładnej analizy?</h3><p>Kalkulatory to narzędzie orientacyjne. Skontaktuj się z naszym biurem — pierwsza rozmowa bezpłatna.</p><a href="kontakt.html" style="display:block;text-align:center;background:var(--accent);color:white;padding:11px;border-radius:var(--r-sm);font-size:13px;font-weight:600;text-decoration:none;margin-top:12px">Rozmowa wstępna →</a></div>
+  <div class="sbc"><div class="sbt">Podstawy ZUS 2026</div>
+    <div class="sbr"><span class="sbl">Minimalne wynagrodzenie</span><span class="sbv">4 806 zł</span></div>
+    <div class="sbr"><span class="sbl">Pełna podstawa (60%)</span><span class="sbv">5 652 zł</span></div>
+    <div class="sbr"><span class="sbl">Pref. podstawa (30%)</span><span class="sbv">1 441,80 zł</span></div>
+    <div class="sbr"><span class="sbl">Min. składka zdrowotna</span><span class="sbv sbva">432,54 zł</span></div>
+  </div>
+  <div class="sbc"><div class="sbt">Progi podatkowe 2026</div>
+    <div class="sbr"><span class="sbl">Skala I (do 120 000 zł)</span><span class="sbv">12%</span></div>
+    <div class="sbr"><span class="sbl">Skala II (pow. 120 000 zł)</span><span class="sbv">32%</span></div>
+    <div class="sbr"><span class="sbl">Podatek liniowy</span><span class="sbv">19%</span></div>
+    <div class="sbr"><span class="sbl">Kwota wolna</span><span class="sbv">30 000 zł/rok</span></div>
+    <div class="sbr"><span class="sbl">Limit zwolnienia z VAT</span><span class="sbv sbva">200 000 zł</span></div>
+  </div>
+  <div class="sbc"><div class="sbt">Stawki składek ZUS</div>
+    <div class="sbr"><span class="sbl">Emerytalna</span><span class="sbv">19,52%</span></div>
+    <div class="sbr"><span class="sbl">Rentowa</span><span class="sbv">8,00%</span></div>
+    <div class="sbr"><span class="sbl">Chorobowa (dobrowolna)</span><span class="sbv">2,45%</span></div>
+    <div class="sbr"><span class="sbl">Wypadkowa (do 9 os.)</span><span class="sbv">1,67%</span></div>
+    <div class="sbr"><span class="sbl">FP + Fund. Solidarn.</span><span class="sbv">2,45%</span></div>
+  </div>
+  <div style="padding:12px 16px;background:var(--navy);border-radius:var(--r-lg);text-align:center">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">Pytania do obliczeń?</div>
+    <a href="tel:+48517765128" style="display:block;color:white;font-size:16px;font-weight:600;text-decoration:none">+48 517-765-128</a>
+    <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px">Pon.–Pt.: 8:00–16:00</div>
+  </div>
+</div>
+</div>
+
+<script>
+const f=v=>new Intl.NumberFormat('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v)+' zł';
+const Z={MIN:4806,PELNA:5652,PREF:1441.80,MZDR:432.54,EM:0.1952,RE:0.08,CH:0.0245,WY:0.0167,FP:0.0245};
+
+function sw(id,btn){
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.cpanel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('p-'+id).classList.add('active');
+}
+
+function zOnStatus(){
+  const s=document.getElementById('z-status').value;
+  document.getElementById('zg-dochod').style.display=s==='maly'?'none':'block';
+  document.getElementById('zg-dochod-rok').style.display=s==='maly'?'block':'none';
+  const fpRow=document.getElementById('zr-fp-row');
+  if(s==='start'||s==='pref'){fpRow.style.opacity='0.4';document.getElementById('z-fp').checked=false;}
+  else{fpRow.style.opacity='1';document.getElementById('z-fp').checked=true;}
+  zOnForma();
+}
+
+function zOnForma(){
+  const fo=document.getElementById('z-forma').value;
+  const s=document.getElementById('z-status').value;
+  if(s==='maly') return; // przy Małym ZUS+ pole dochodu rocznego obsługuje zOnStatus
+  const ryczalt = fo==='r60'||fo==='r300'||fo==='rpow'||fo==='karta';
+  document.getElementById('zg-dochod').style.display = ryczalt ? 'none' : 'block';
+  if(!ryczalt){
+    const proc = fo==='liniowy' ? '4,9%' : '9%';
+    document.getElementById('zg-dochod').querySelector('.fh
+
+function zdrow(forma,dochod){
+  if(forma==='ogolna') return Math.max(Z.MZDR,dochod*0.09);
+  if(forma==='liniowy') return Math.max(Z.MZDR,dochod*0.049);
+  if(forma==='r60')  return Z.MZDR;
+  if(forma==='r300') return Math.max(Z.MZDR,9228.64*0.75*0.09);   // 622.93
+  if(forma==='rpow') return Math.max(Z.MZDR,9228.64*0.75*1.8*0.09); // 1121.28
+  return Z.MZDR; // karta
+}
+
+function zdrowLabel(forma){
+  const m={ogolna:'9% dochodu, min. 432,54 zł',liniowy:'4,9% dochodu, min. 432,54 zł',
+    r60:'ryczałt, przychód ≤60 000 zł/rok',r300:'ryczałt, przychód 60 001–300 000 zł/rok',
+    rpow:'ryczałt, przychód >300 000 zł/rok',karta:'karta podatkowa — kwota stała'};
+  return 'Składka zdrowotna ('+m[forma]+')';
+}
+
+function calcZUS(){
+  const st=document.getElementById('z-status').value;
+  const fo=document.getElementById('z-forma').value;
+  const d=parseFloat(document.getElementById('z-dochod').value)||0;
+  const dr=parseFloat(document.getElementById('z-dochod-rok').value)||0;
+  const ch=document.getElementById('z-chorob').checked;
+  const fp=document.getElementById('z-fp').checked;
+
+  let podst=0,em=0,re=0,cho=0,wy=0,fpp=0;
+  if(st==='pref') podst=Z.PREF;
+  else if(st==='pelny') podst=Z.PELNA;
+  else if(st==='maly'){const dm=dr||3000;podst=Math.min(Z.PELNA,Math.max(Z.PREF,dm*0.5));}
+
+  if(st!=='start'){
+    em=podst*Z.EM; re=podst*Z.RE; cho=ch?podst*Z.CH:0; wy=podst*Z.WY;
+    fpp=(fp&&st==='pelny'&&podst>=Z.MIN)?podst*Z.FP:0;
+  }
+  const sp=em+re+cho+wy+fpp;
+
+  let zd,zdL;
+  if(st==='start'&&(fo==='ogolna'||fo==='liniowy')){
+    zd=zdrow(fo,d||0); zdL=zdrowLabel(fo);
+  } else if(st==='maly'&&(fo==='ogolna'||fo==='liniowy')){
+    zd=zdrow(fo,dr||3000); zdL=zdrowLabel(fo);
+  } else {
+    zd=zdrow(fo,d); zdL=zdrowLabel(fo);
+  }
+
+  const tot=sp+zd;
+  const sv=(id,v,dim)=>{
+    document.getElementById(id).textContent=v;
+    if(dim!=null){const r=id.replace('zv-','zrow-');if(document.getElementById(r))document.getElementById(r).style.opacity=dim?'1':'0.35';}
+  };
+
+  if(st==='start'){
+    sv('zv-em','0,00 zł — zwolnienie',false);sv('zv-re','0,00 zł — zwolnienie',false);
+    sv('zv-ch','0,00 zł — zwolnienie',false);sv('zv-wy','0,00 zł — zwolnienie',false);
+    sv('zv-fp','0,00 zł',false);
+  } else {
+    sv('zv-em',f(em),true);sv('zv-re',f(re),true);
+    sv('zv-ch',ch?f(cho):'0,00 zł — nie opłacam',ch);
+    sv('zv-wy',f(wy),true);
+    sv('zv-fp',fpp>0?f(fpp):'0,00 zł — brak przy tej podstawie',fpp>0);
+  }
+  document.getElementById('zv-sp').textContent=f(sp);
+  document.getElementById('zl-zdrow').textContent=zdL;
+  document.getElementById('zv-zdrow').textContent=f(zd);
+  document.getElementById('zv-tot').textContent=f(tot);
+
+  const stL={start:'Ulga na start',pref:'Preferencyjny ZUS',pelny:'Pełny ZUS',maly:'Mały ZUS Plus'};
+  document.getElementById('zv-info').innerHTML=
+    `Status: <strong>${stL[st]}</strong> | Podstawa składek społecznych: <strong>${f(podst)}</strong><br>
+     Podstawy 2026: min. wyna. 4 806 zł · pełna 5 652 zł · min. zdrowotna 432,54 zł. Wyniki orientacyjne.`;
+
+  document.getElementById('rc-zus').classList.add('show');
+}
+
+function calcForma(){
+  const P=parseFloat(document.getElementById('f-prz').value)||0;
+  const K=parseFloat(document.getElementById('f-kos').value)||0;
+  const rs=parseFloat(document.getElementById('f-rycz').value);
+  const zu=parseFloat(document.getElementById('f-zus').value)||0;
+  if(!P){alert('Podaj przychód');return;}
+  const D=Math.max(0,P-K);
+  const zS=Math.max(Z.MZDR,D*0.09),zL=Math.max(Z.MZDR,D*0.049);
+  const rr=P*12;const zR=rr<=60000?Z.MZDR:rr<=300000?622.93:1121.28;
+  const pS=Math.max(0,(D-2500)*0.12-300);
+  const pL=Math.max(0,D*0.19);
+  const pR=P*rs;
+  const r=[
+    {n:'Skala podatkowa (12%)',netto:P-K-zu-zS-pS,pit:pS,zd:zS},
+    {n:'Podatek liniowy (19%)',netto:P-K-zu-zL-pL,pit:pL,zd:zL},
+    {n:`Ryczałt ${(rs*100).toFixed(1)}%`,netto:P-zu-zR-pR,pit:pR,zd:zR},
+  ].sort((a,b)=>b.netto-a.netto);
+  document.getElementById('forma-rows').innerHTML=r.map((x,i)=>`
+    <div class="rr${i===0?' rgrand':''}">
+      <span class="rl">${x.n}${i===0?' <span style="font-size:10px;background:var(--accent-mid);color:white;padding:1px 8px;border-radius:100px;margin-left:6px">NAJLEPSZA</span>':''}</span>
+      <span class="rv">${f(x.netto)}</span></div>`).join('');
+  document.getElementById('rc-forma').classList.add('show');
+  document.getElementById('forma-tbl').innerHTML=
+    `<tr><th>Forma</th><th>Podatek</th><th>Zdrowotna</th><th>ZUS społ.</th><th>Netto</th></tr>`+
+    r.map((x,i)=>`<tr${i===0?' class="best"':''}><td>${x.n}</td><td>${f(x.pit)}</td><td>${f(x.zd)}</td><td>${f(zu)}</td><td><b>${f(x.netto)}</b></td></tr>`).join('');
+  document.getElementById('cd-forma').style.display='block';
+}
+
+function calcVAT(){
+  const st=parseFloat(document.getElementById('v-st').value);
+  const ki=document.getElementById('v-kier').value;
+  const kw=parseFloat(document.getElementById('v-kwota').value)||0;
+  if(!kw){alert('Podaj kwotę');return;}
+  let n,b,v;
+  if(ki==='netto'){n=kw;v=kw*st;b=kw+v;}else{b=kw;n=kw/(1+st);v=b-n;}
+  document.getElementById('vat-rows').innerHTML=`
+    <div class="rr rgrand"><span class="rl">${ki==='netto'?'Kwota brutto':'Kwota netto'}</span><span class="rv">${f(ki==='netto'?b:n)}</span></div>
+    <div class="rr"><span class="rl">Kwota netto</span><span class="rv">${f(n)}</span></div>
+    <div class="rr"><span class="rl">Podatek VAT (${(st*100).toFixed(0)}%)</span><span class="rv">${f(v)}</span></div>
+    <div class="rr"><span class="rl">Kwota brutto</span><span class="rv">${f(b)}</span></div>`;
+  document.getElementById('rc-vat').classList.add('show');
+}
+
+function calcWyn(){
+  const br=parseFloat(document.getElementById('w-br').value)||0;
+  if(!br){alert('Podaj wynagrodzenie');return;}
+  const kup=parseFloat(document.getElementById('w-kup').value);
+  const ulga=parseFloat(document.getElementById('w-ulga').value);
+  const um=document.getElementById('w-um').value;
+  let rows='';
+  if(um==='student'){
+    rows=`<div class="rr rgrand"><span class="rl">Wynagrodzenie netto (na rękę)</span><span class="rv">${f(br)}</span></div>
+      <div class="rst">Potrącenia pracownika</div>
+      <div class="rr"><span class="rl">Składki ZUS pracownika</span><span class="rv" style="color:rgba(255,255,255,.45)">zwolnienie — student/uczeń</span></div>
+      <div class="rr"><span class="rl">Podatek dochodowy</span><span class="rv" style="color:rgba(255,255,255,.45)">zwolnienie — ulga dla młodych (do 26 lat)</span></div>`;
+  } else {
+    const em=br*0.0976,re=br*0.015,ch=br*0.0245,sp=em+re+ch;
+    const pzdr=(br-sp)*0.09;
+    const ppit=Math.max(0,(br-sp-kup)*0.12-ulga);
+    const netto=br-sp-pzdr-ppit;
+    const empr=br*0.0976,repr=br*0.065,wypr=br*0.0167,fppr=br*0.01,fgpr=br*0.001;
+    const kost=br+empr+repr+wypr+fppr+fgpr;
+    rows=`<div class="rr rgrand"><span class="rl">Wynagrodzenie netto (na rękę)</span><span class="rv">${f(netto)}</span></div>
+      <div class="rst">Potrącenia pracownika</div>
+      <div class="rr"><span class="rl">Emerytalna pracownika (9,76%)</span><span class="rv">${f(em)}</span></div>
+      <div class="rr"><span class="rl">Rentowa pracownika (1,5%)</span><span class="rv">${f(re)}</span></div>
+      <div class="rr"><span class="rl">Chorobowa pracownika (2,45%)</span><span class="rv">${f(ch)}</span></div>
+      <div class="rr"><span class="rl">Składka zdrowotna (9%)</span><span class="rv">${f(pzdr)}</span></div>
+      <div class="rr"><span class="rl">Zaliczka na podatek PIT</span><span class="rv">${f(ppit)}</span></div>
+      <div class="rst">Koszt pracodawcy</div>
+      <div class="rr"><span class="rl">Emerytalna (9,76%) + rentowa (6,5%) + wypadkowa (1,67%) + FP + FGŚP</span><span class="rv">${f(kost-br)}</span></div>
+      <div class="rr rsum"><span class="rl">Łączny koszt zatrudnienia</span><span class="rv">${f(kost)}</span></div>`;
+  }
+  document.getElementById('wyn-rows').innerHTML=rows;
+  document.getElementById('rc-wyn').classList.add('show');
+}
+</script>
+</body>
+</html>
