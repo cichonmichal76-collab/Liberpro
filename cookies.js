@@ -82,6 +82,7 @@ function applySharedPageState(){
 
   var path=(window.location.pathname.split('/').pop()||'index.html').toLowerCase();
   var servicePages=['uslugi.html','ksiegowosc.html','kadry.html','zakladanie-dzialalnosci.html','zakladanie-spolki.html'];
+  var calculatorPages=['kalkulator-zus.html','kalkulator-kasa-fiskalna.html'];
 
   if(path==='o-nas.html')body.classList.add('about-page');
   if(path==='uslugi.html')body.classList.add('services-page');
@@ -89,17 +90,22 @@ function applySharedPageState(){
   if(servicePages.indexOf(path)!==-1 && path!=='uslugi.html')body.classList.add('service-detail-page');
   if(path==='narzedzia.html')body.classList.add('tools-page');
   if(path==='blog.html')body.classList.add('blog-index-page');
+  if(path.indexOf('blog-')===0)body.classList.add('blog-article-page');
+  if(calculatorPages.indexOf(path)!==-1)body.classList.add('calculator-page');
+  if(path==='polityka-prywatnosci.html')body.classList.add('legal-page');
+  if(path==='404.html')body.classList.add('error-page');
 }
 
 function normalizeSiteNav(){
   var path=(window.location.pathname.split('/').pop()||'index.html').toLowerCase();
   var servicePages=['uslugi.html','ksiegowosc.html','kadry.html','zakladanie-dzialalnosci.html','zakladanie-spolki.html'];
+  var calculatorPages=['kalkulator-zus.html','kalkulator-kasa-fiskalna.html'];
   var topHref='';
   var subHref='';
 
   if(path==='o-nas.html'){
     topHref='o-nas.html';
-  } else if(path==='narzedzia.html'){
+  } else if(path==='narzedzia.html' || calculatorPages.indexOf(path)!==-1){
     topHref='narzedzia.html';
   } else if(path==='blog.html' || path.indexOf('blog-')===0){
     topHref='blog.html';

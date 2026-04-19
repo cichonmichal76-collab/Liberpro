@@ -11,30 +11,31 @@
 <style>
 :root{--navy:#0a2540;--navy-mid:#0f3460;--navy-light:#eef3f9;--accent:#1a6b4a;--accent-mid:#2e9e72;--accent-light:#e8f5f0;--ink:#0f172a;--ink-mid:#475569;--ink-light:#94a3b8;--white:#ffffff;--surface:#f1f5f9;--border:#e2e8f0;--r-sm:6px;--r-md:12px;--r-lg:20px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--container:1200px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Archivo',sans-serif;color:var(--ink);background:var(--white);font-size:15px;line-height:1.6}
-nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 var(--s4)}
-.nav-i{max-width:var(--container);margin:0 auto;display:flex;align-items:center;height:64px}
+body{font-family:'Archivo',sans-serif;color:var(--ink);background:radial-gradient(circle at top left,rgba(26,107,74,.08),transparent 22%),linear-gradient(180deg,#fbfdff 0%,#f6f9fc 52%,#eef4f8 100%);font-size:15px;line-height:1.6}
+nav{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 1px 0 rgba(15,23,42,.03);padding:0 var(--s4);position:sticky;top:0;z-index:100}
+.nav-i{max-width:var(--container);margin:0 auto;display:flex;align-items:center;height:72px}
 .logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);text-decoration:none}
 .logo span{color:var(--accent)}
-.back-link{margin-left:auto;font-size:13px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;font-weight:500}
-.page-hero{background:var(--navy);padding:var(--s5) 0;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(46,158,114,.18),transparent 60%)}
+.back-link{margin-left:auto;font-size:13px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;font-weight:600;padding:10px 16px;border-radius:999px;background:rgba(26,107,74,.08);transition:all .15s}
+.back-link:hover{background:rgba(26,107,74,.14);color:var(--navy)}
+.page-hero{background:linear-gradient(140deg,#081d33 0%,#113a5f 55%,#0b2944 100%);padding:64px 0 72px;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(255,255,255,.08),transparent 24%),radial-gradient(circle at 86% 18%,rgba(46,158,114,.22),transparent 30%),linear-gradient(135deg,rgba(7,23,39,.14) 0%,rgba(7,23,39,.32) 100%)}
 .phi{max-width:var(--container);margin:0 auto;padding:0 var(--s4);position:relative;z-index:1}
 .sec-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-mid);background:rgba(46,158,114,.15);padding:3px 10px;border-radius:100px;margin-bottom:var(--s2)}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);color:var(--white);margin-bottom:10px;line-height:1.2}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);color:var(--white);margin-bottom:12px;line-height:1.12;letter-spacing:-.4px}
 .page-hero h1 em{font-style:italic;color:var(--accent-mid)}
-.page-hero p{color:rgba(255,255,255,.7);font-size:15px}
+.page-hero p{color:rgba(255,255,255,.72);font-size:16px;max-width:700px}
 .badges{margin-top:var(--s3);display:flex;gap:var(--s3);flex-wrap:wrap}
 .hb{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.55);font-size:12px}
 .hb svg{width:13px;height:13px;fill:var(--accent-mid)}
-.cnav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:90}
-.cnav-i{max-width:var(--container);margin:0 auto;padding:0 var(--s4);display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
-.ctab{padding:14px 18px;font-size:13px;font-weight:500;color:var(--ink-mid);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s;font-family:'Archivo',sans-serif}
-.ctab:hover{color:var(--navy)}
-.ctab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
-.cmain{max-width:var(--container);margin:0 auto;padding:var(--s5) var(--s4);display:grid;grid-template-columns:1fr 360px;gap:var(--s5);align-items:start}
+.cnav{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:72px;z-index:90;box-shadow:0 14px 30px rgba(10,37,64,.06)}
+.cnav-i{max-width:var(--container);margin:0 auto;padding:12px var(--s4) 14px;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.ctab{padding:13px 18px;font-size:13px;font-weight:600;color:var(--ink-mid);border:1px solid #dbe6ef;background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);cursor:pointer;white-space:nowrap;border-radius:18px;transition:all .15s;font-family:'Archivo',sans-serif;box-shadow:0 8px 18px rgba(10,37,64,.05)}
+.ctab:hover{color:var(--navy);background:#fff;border-color:#c7d8e4}
+.ctab.active{color:#fff;background:linear-gradient(135deg,#0a2540 0%,#113a5f 100%);border-color:transparent;font-weight:600;box-shadow:0 18px 40px rgba(10,37,64,.1)}
+.cmain{max-width:var(--container);margin:0 auto;padding:56px var(--s4);display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start}
 .cpanel{display:none}.cpanel.active{display:block}
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4);margin-bottom:var(--s3)}
+.card{background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);border:1px solid #dbe6ef;border-radius:28px;padding:30px 28px;margin-bottom:var(--s3);box-shadow:0 10px 24px rgba(10,37,64,.06)}
 .ct{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:6px}
 .cs{font-size:13px;color:var(--ink-mid);margin-bottom:var(--s4);line-height:1.6}
 .fg{margin-bottom:var(--s3)}
@@ -71,23 +72,23 @@ nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 var(
 .ctbl th{background:var(--navy);color:var(--white);padding:10px 14px;font-size:12px;font-weight:600;text-align:left}
 .ctbl td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
 .ctbl tr.best td{background:var(--accent-light);font-weight:600;color:var(--accent)}
-.sbc{border-radius:var(--r-lg);padding:var(--s3);margin-bottom:var(--s3);border:1px solid var(--border)}
+.sbc{border-radius:24px;padding:22px 24px;margin-bottom:var(--s3);border:1px solid #dbe6ef;background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);box-shadow:0 10px 24px rgba(10,37,64,.06)}
 .sbt{font-size:13px;font-weight:600;margin-bottom:var(--s2)}
 .sbr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:0.5px solid var(--border);font-size:12px}
 .sbr:last-child{border-bottom:none}
 .sbl{color:var(--ink-mid)}
 .sbv{font-weight:600;color:var(--ink)}
 .sbva{color:var(--accent)}
-.ibox{background:var(--accent-light);border:1px solid rgba(26,107,74,.2);border-radius:var(--r-lg);padding:var(--s3);margin-bottom:var(--s3)}
+.ibox{background:linear-gradient(180deg,#eaf6f0 0%,#e1f2ea 100%);border:1px solid rgba(26,107,74,.16);border-radius:24px;padding:22px 24px;margin-bottom:var(--s3);box-shadow:0 10px 24px rgba(26,107,74,.08)}
 .ibox h3{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:8px}
 .ibox p{font-size:12px;color:var(--ink-mid);line-height:1.7}
 @media(max-width:900px){.cmain{grid-template-columns:1fr}.sbcol{display:none}}
-@media(max-width:600px){.fr{grid-template-columns:1fr}.page-hero h1{font-size:26px}.ctab{padding:12px 12px;font-size:12px}}
+@media(max-width:600px){.fr{grid-template-columns:1fr}.page-hero h1{font-size:26px}.ctab{padding:12px 12px;font-size:12px}.card,.sbc,.ibox{padding:24px 20px}.cnav{top:72px}}
 .cdisclaimer{margin-top:16px;padding:12px 16px;border-top:1px solid var(--border);font-size:10.5px;color:var(--ink-light);line-height:1.6}
 .cdisclaimer p+p{margin-top:5px}
 </style>
 </head>
-<body>
+<body class="calculator-hub-page">
 <nav><div class="nav-i">
   <a href="index.html" class="logo">Liber <span>Pro</span></a>
   <a href="index.html" class="back-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>Powrót</a>
@@ -340,10 +341,14 @@ function zOnForma(){
   const s=document.getElementById('z-status').value;
   if(s==='maly') return; // przy Małym ZUS+ pole dochodu rocznego obsługuje zOnStatus
   const ryczalt = fo==='r60'||fo==='r300'||fo==='rpow'||fo==='karta';
-  document.getElementById('zg-dochod').style.display = ryczalt ? 'none' : 'block';
-  if(!ryczalt){
+  const dochodWrap=document.getElementById('zg-dochod');
+  const dochodHint=dochodWrap.querySelector('.fh');
+  dochodWrap.style.display = ryczalt ? 'none' : 'block';
+  if(!ryczalt && dochodHint){
     const proc = fo==='liniowy' ? '4,9%' : '9%';
-    document.getElementById('zg-dochod').querySelector('.fh
+    dochodHint.textContent='Podstawa składki zdrowotnej = przychód minus koszty. Stawka zdrowotna: '+proc+'.';
+  }
+}
 
 function zdrow(forma,dochod){
   if(forma==='ogolna') return Math.max(Z.MZDR,dochod*0.09);
@@ -494,6 +499,8 @@ function calcWyn(){
   document.getElementById('wyn-rows').innerHTML=rows;
   document.getElementById('rc-wyn').classList.add('show');
 }
+
+zOnStatus();
 </script>
 </body>
 </html>
