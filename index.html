@@ -31,7 +31,7 @@
 </script>
 <script src="cookies.js" defer></script>
 </head>
-<body>
+<body class="home-page">
 
 <a href="#content" class="skip-link">Przejdź do treści</a>
 
@@ -87,25 +87,56 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-i">
-    <div>
+    <div class="hero-copy">
       <div class="hero-tag"><div class="hero-dot"></div>Biuro rachunkowe · cała Polska</div>
       <h1>Finanse Twojej firmy<br> w dobrych <em>rękach</em></h1>
       <p class="hero-sub">Prowadzimy księgowość firm, obsługę kadr i płac oraz rejestrację działalności i spółek. Zapewniamy uporządkowany obieg dokumentów, terminową obsługę i stały kontakt.</p>
+      <ul class="hero-proof-list">
+        <li>Jeden opiekun odpowiedzialny za całość obsługi</li>
+        <li>Cyfrowy obieg dokumentów i szybka komunikacja</li>
+        <li>Obsługa firm z całej Polski, także w modelu zdalnym</li>
+      </ul>
       <a href="tel:+48517765128" class="mobile-tel">+48 517-765-128</a>
       <div class="hero-btns">
         <a href="kontakt.html" class="btn-white">Rozmowa wstępna</a>
         <a href="uslugi.html" class="btn-ghost-w">Nasze usługi →</a>
       </div>
+      <p class="hero-microcopy">Pierwsza rozmowa wstÄ™pna jest bezpĹ‚atna. Odpowiadamy w ciÄ…gu jednego dnia roboczego.</p>
+      <div class="hero-trust">
+        <div class="hero-trust-card"><strong>24h</strong><span>na odpowiedĹş i wstÄ™pny kontakt</span></div>
+        <div class="hero-trust-card"><strong>100%</strong><span>obsĹ‚ugi dopasowanej do modelu Twojej firmy</span></div>
+        <div class="hero-trust-card"><strong>1</strong><span>opiekun, ktĂłry zna TwojÄ… firmÄ™ od poczÄ…tku</span></div>
+      </div>
     </div>
-    <div class="hero-card">
-      <div class="hero-card-title">Co obejmujemy</div>
-      <div class="hero-features">
+    <div class="hero-stack">
+      <div class="hero-card hero-card-primary">
+        <div class="hero-card-top">
+          <div>
+            <div class="hero-card-title">Co obejmujemy</div>
+            <p class="hero-card-sub">Zakres wspolpracy, ktory porzadkuje finanse od pierwszego dnia.</p>
+          </div>
+          <div class="hero-card-badge">Liber Pro</div>
+        </div>
+        <div class="hero-features">
         <div class="hf"><div class="hf-dot">✓</div>Pełna księgowość: KH, KPiR, VAT, CIT, PIT</div>
         <div class="hf"><div class="hf-dot">✓</div>Kadry i Płace – umowy, ZUS, listy płac</div>
         <div class="hf"><div class="hf-dot">✓</div>Zakładanie JDG i spółek: CEIDG, KRS</div>
         <div class="hf"><div class="hf-dot">✓</div>Cyfrowy obieg dokumentów – bez papierów</div>
         <div class="hf"><div class="hf-dot">✓</div>Reprezentacja przed urzędami i ZUS</div>
         <div class="hf"><div class="hf-dot">✓</div>Obsługa zdalna – stacjonarna · cała Polska</div>
+        </div>
+      </div>
+      <div class="hero-side-grid">
+        <div class="hero-mini-card">
+          <span class="hero-mini-label">Start wspolpracy</span>
+          <strong>3 proste kroki</strong>
+          <p>Rozmowa, wdrozenie dokumentow i biezaca obsluga bez chaosu.</p>
+        </div>
+        <div class="hero-mini-card">
+          <span class="hero-mini-label">Codzienna praca</span>
+          <strong>Kontakt bez znikania</strong>
+          <p>Staly kanal komunikacji, terminy pod kontrola i szybkie odpowiedzi.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -125,11 +156,36 @@
 </div>
 
 <!-- USŁUGI. LISTA ROZWIJANA -->
-<section id="uslugi">
+<section id="uslugi" class="services-home">
   <div class="container">
+    <div class="home-section-head">
+      <div class="home-section-copy">
     <span class="sec-tag">Co robimy</span>
     <h2 class="sec-title">Kompleksowa obsługa <em>finansowa</em></h2>
     <p class="sec-desc">Od pierwszego dnia działalności po dojrzały biznes – jeden opiekun, pełna obsługa, bez zaskoczeń.</p>
+
+      </div>
+      <aside class="home-section-panel">
+        <span class="home-panel-kicker">Najczesciej wybierane</span>
+        <h3>Dobieramy zakres pracy do etapu Twojej firmy.</h3>
+        <p>Mozemy przejac calosc albo tylko ten fragment, ktory dzisiaj najbardziej blokuje rozwoj.</p>
+        <ul class="home-panel-list">
+          <li>Pelna ksiegowosc i rozliczenia podatkowe</li>
+          <li>Kadry, place i dokumentacja pracownicza</li>
+          <li>Start JDG lub spolki bez formalnego chaosu</li>
+        </ul>
+        <div class="home-panel-foot">
+          <span class="home-panel-foot-label">Dobrze sprawdza sie, gdy:</span>
+          <div class="home-panel-tags">
+            <span>startujesz z firma</span>
+            <span>zmieniasz biuro</span>
+            <span>porzadkujesz dokumenty</span>
+          </div>
+          <p>Wspolprace mozemy rozlozyc etapami, bez rewolucji po stronie Twojego zespolu.</p>
+        </div>
+        <a href="kontakt.html" class="btn-primary">Dobierz zakres wspolpracy</a>
+      </aside>
+    </div>
 
     <div class="srv-list">
 
@@ -225,7 +281,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -236,6 +291,17 @@
     <span class="sec-tag">Dlaczego my</span>
     <h2 class="sec-title">Co zyskujesz <em>współpracując z nami</em></h2>
     <p class="sec-desc">Konkretne korzyści, nie obietnice.</p>
+    <div class="home-section-head benefits-head">
+      <div class="home-section-copy">
+        <span class="sec-tag">Dlaczego my</span>
+        <h2 class="sec-title">Co zyskujesz <em>wspolpracujac z nami</em></h2>
+        <p class="sec-desc">Konkretne korzysci, nie obietnice.</p>
+      </div>
+      <div class="benefits-note">
+        <span class="home-panel-kicker">Co to znaczy w praktyce</span>
+        <p>Upraszczamy obieg dokumentow, pilnujemy terminow i komunikujemy sie po ludzku.</p>
+      </div>
+    </div>
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="bc-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
@@ -319,11 +385,17 @@
 
 </main>
 
+<a href="kontakt.html" class="mobile-cta-fixed">Umow bezplatna rozmowe</a>
+
 <footer>
   <div class="footer-grid">
     <div>
       <img src="logo.png" alt="Liber Pro Księgowość" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
       <p class="f-tagline">Twoje finanse w dobrych rękach.<br>Razem budujemy Twój sukces.</p>
+      <div class="footer-badges">
+        <span>Zdalnie i stacjonarnie</span>
+        <span>Obsługa z całej Polski</span>
+      </div>
       
     </div>
     <div class="f-col">
@@ -444,6 +516,48 @@ document.querySelectorAll('.c-form,.contact-form').forEach(function(form){
     if(el.querySelector('.email-text'))el.querySelector('.email-text').textContent=e;
     else if(!el.querySelector('svg'))el.textContent=e;
   });
+})();
+</script>
+<script>
+(function(){
+  function setText(selector, text){
+    var el=document.querySelector(selector);
+    if(el) el.textContent=text;
+  }
+  function setHtml(selector, html){
+    var el=document.querySelector(selector);
+    if(el) el.innerHTML=html;
+  }
+
+  setText('.hero-tag', 'Biuro rachunkowe \u00b7 ca\u0142a Polska');
+  setText('.hero-btns .btn-white', 'Rozmowa wst\u0119pna');
+  setText('.hero-btns .btn-ghost-w', 'Nasze us\u0142ugi \u2192');
+  setText('.hero-proof-list li:nth-child(1)', 'Jeden opiekun odpowiedzialny za ca\u0142o\u015b\u0107 obs\u0142ugi');
+  setText('.hero-proof-list li:nth-child(2)', 'Cyfrowy obieg dokument\u00f3w i szybka komunikacja');
+  setText('.hero-proof-list li:nth-child(3)', 'Obs\u0142uga firm z ca\u0142ej Polski, tak\u017ce w modelu zdalnym');
+  setText('.hero-microcopy', 'Pierwsza rozmowa wst\u0119pna jest bezp\u0142atna. Odpowiadamy w ci\u0105gu jednego dnia roboczego.');
+  setText('.hero-trust-card:nth-child(1) span', 'na odpowied\u017a i wst\u0119pny kontakt');
+  setText('.hero-trust-card:nth-child(2) span', 'obs\u0142ugi dopasowanej do modelu Twojej firmy');
+  setText('.hero-trust-card:nth-child(3) span', 'opiekun, kt\u00f3ry zna Twoj\u0105 firm\u0119 od pocz\u0105tku');
+  setText('.hero-card-sub', 'Zakres wsp\u00f3\u0142pracy, kt\u00f3ry porz\u0105dkuje finanse od pierwszego dnia.');
+  setText('.hero-mini-card:nth-child(1) .hero-mini-label', 'Start wsp\u00f3\u0142pracy');
+  setText('.hero-mini-card:nth-child(1) p', 'Rozmowa, wdro\u017cenie dokument\u00f3w i bie\u017c\u0105ca obs\u0142uga bez chaosu.');
+  setText('.hero-mini-card:nth-child(2) p', 'Sta\u0142y kana\u0142 komunikacji, terminy pod kontrol\u0105 i szybkie odpowiedzi.');
+  setText('.home-section-panel .home-panel-kicker', 'Najcz\u0119\u015bciej wybierane');
+  setText('.home-section-panel p', 'Mo\u017cemy przej\u0105\u0107 ca\u0142o\u015b\u0107 albo tylko ten fragment, kt\u00f3ry dzisiaj najbardziej blokuje rozw\u00f3j.');
+  setText('.home-panel-list li:nth-child(1)', 'Pe\u0142na ksi\u0119gowo\u015b\u0107 i rozliczenia podatkowe');
+  setText('.home-panel-list li:nth-child(2)', 'Kadry, p\u0142ace i dokumentacja pracownicza');
+  setText('.home-panel-list li:nth-child(3)', 'Start JDG lub sp\u00f3\u0142ki bez formalnego chaosu');
+  setText('.home-panel-foot-label', 'Dobrze sprawdza si\u0119, gdy:');
+  setText('.home-panel-tags span:nth-child(1)', 'startujesz z firm\u0105');
+  setText('.home-panel-tags span:nth-child(2)', 'zmieniasz biuro');
+  setText('.home-panel-tags span:nth-child(3)', 'porz\u0105dkujesz dokumenty');
+  setText('.home-panel-foot p', 'Wsp\u00f3\u0142prac\u0119 mo\u017cemy roz\u0142o\u017cy\u0107 etapami, bez rewolucji po stronie Twojego zespo\u0142u.');
+  setText('.home-section-panel .btn-primary', 'Dobierz zakres wsp\u00f3\u0142pracy');
+  setHtml('#dlaczego-my .home-section-copy .sec-title', 'Co zyskujesz <em>wsp\u00f3\u0142pracuj\u0105c z nami</em>');
+  setText('#dlaczego-my .home-section-copy .sec-desc', 'Konkretne korzy\u015bci, nie obietnice.');
+  setText('#dlaczego-my .benefits-note p', 'Upraszczamy obieg dokument\u00f3w, pilnujemy termin\u00f3w i komunikujemy si\u0119 po ludzku.');
+  setText('.mobile-cta-fixed', 'Um\u00f3w bezp\u0142atn\u0105 rozmow\u0119');
 })();
 </script>
 </body>
