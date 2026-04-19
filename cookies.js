@@ -76,8 +76,67 @@
   });
 })();
 
+function applySharedPageState(){
+  var body=document.body;
+  if(!body)return;
+
+  var path=(window.location.pathname.split('/').pop()||'index.html').toLowerCase();
+  var servicePages=['uslugi.html','ksiegowosc.html','kadry.html','zakladanie-dzialalnosci.html','zakladanie-spolki.html'];
+
+  if(path==='o-nas.html')body.classList.add('about-page');
+  if(path==='uslugi.html')body.classList.add('services-page');
+  if(path==='kontakt.html')body.classList.add('contact-page');
+  if(servicePages.indexOf(path)!==-1 && path!=='uslugi.html')body.classList.add('service-detail-page');
+  if(path==='narzedzia.html')body.classList.add('tools-page');
+  if(path==='blog.html')body.classList.add('blog-index-page');
+}
+
+function normalizeSiteNav(){
+  var path=(window.location.pathname.split('/').pop()||'index.html').toLowerCase();
+  var servicePages=['uslugi.html','ksiegowosc.html','kadry.html','zakladanie-dzialalnosci.html','zakladanie-spolki.html'];
+  var topHref='';
+  var subHref='';
+
+  if(path==='o-nas.html'){
+    topHref='o-nas.html';
+  } else if(path==='narzedzia.html'){
+    topHref='narzedzia.html';
+  } else if(path==='blog.html' || path.indexOf('blog-')===0){
+    topHref='blog.html';
+  } else if(servicePages.indexOf(path)!==-1){
+    topHref='uslugi.html';
+    if(path!=='uslugi.html')subHref=path;
+  }
+
+  document.querySelectorAll('#nav a.active,.btn-cta.active,.mob-menu a.active').forEach(function(el){
+    el.classList.remove('active');
+  });
+
+  if(topHref){
+    var topLink=document.querySelector('#nav .nav-links > li > a[href="'+topHref+'"]');
+    if(topLink)topLink.classList.add('active');
+  }
+
+  if(subHref){
+    var subLink=document.querySelector('#nav .sub-menu-inner a[href="'+subHref+'"]');
+    if(subLink)subLink.classList.add('active');
+  }
+
+  if(path==='kontakt.html'){
+    var cta=document.querySelector('.btn-cta[href="kontakt.html"]');
+    if(cta)cta.classList.add('active');
+  }
+
+  var mobileHref=path==='index.html' ? 'index.html' : (topHref || path);
+  var mobileLink=document.querySelector('.mob-menu a[href="'+mobileHref+'"]');
+  if(mobileLink)mobileLink.classList.add('active');
+}
+
+applySharedPageState();
+
 /* Fix toggleSrv */
 document.addEventListener('DOMContentLoaded',function(){
+  normalizeSiteNav();
   window.toggleSrv=function(header){
     var item=header.closest?header.closest('.srv-item'):header.parentElement;
     if(!item)return;
