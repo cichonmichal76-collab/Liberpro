@@ -2239,7 +2239,8 @@ footer{
   gap:14px;
 }
 .service-detail-page .page-hero .hf{
-  font-size:15px;
+  font-size:16px;
+  font-weight:500;
   line-height:1.6;
   color:rgba(255,255,255,.9);
 }

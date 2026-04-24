@@ -9,6 +9,9 @@ ErrorDocument 404 /404.html
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # Jeden adres dla strony głównej
+    RewriteRule ^index\.html$ / [L,R=301]
+
     # Jeden adres dla zduplikowanego artykułu KSeF
     RewriteRule ^blog-odbior-faktur-ksef\.html$ https://www.liberpro.pl/blog-odbiór-faktur-ksef.html [L,R=301,NE]
 </IfModule>
