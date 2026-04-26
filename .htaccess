@@ -11,6 +11,7 @@ ErrorDocument 404 /404.html
 
     # Jeden adres dla strony głównej
     RewriteRule ^index\.html$ / [L,R=301]
+    RewriteRule ^en/index\.html$ /en/ [L,R=301]
 
     # Jeden adres dla zduplikowanego artykułu KSeF
     RewriteRule ^blog-odbior-faktur-ksef\.html$ https://www.liberpro.pl/blog-odbiór-faktur-ksef.html [L,R=301,NE]

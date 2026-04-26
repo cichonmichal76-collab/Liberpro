@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -156,6 +157,8 @@ def sync_page(path: Path) -> bool:
         footer_start = text.index("<footer")
         footer_end = text.index("</footer>", footer_start) + len("</footer>")
         text = text[:footer_start] + FOOTER_TEMPLATE + text[footer_end:]
+
+    text = re.sub(r"\n{3,}", "\n\n", text)
 
     if text != original:
         path.write_text(text, encoding="utf-8", newline="\n")

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accounting and tax calculators 2026 | Liber Pro</title>
+<meta name="description" content="Accounting and tax calculators 2026: ZUS, VAT, salary and other tools helpful in running a business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&amp;family=Archivo:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a2540;--navy-mid:#0f3460;--navy-light:#eef3f9;--accent:#1a6b4a;--accent-mid:#2e9e72;--accent-light:#e8f5f0;--ink:#0f172a;--ink-mid:#475569;--ink-light:#94a3b8;--white:#ffffff;--surface:#f1f5f9;--border:#e2e8f0;--r-sm:6px;--r-md:12px;--r-lg:20px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--container:1200px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo',sans-serif;color:var(--ink);background:radial-gradient(circle at top left,rgba(26,107,74,.08),transparent 22%),linear-gradient(180deg,#fbfdff 0%,#f6f9fc 52%,#eef4f8 100%);font-size:15px;line-height:1.6}
+nav{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 1px 0 rgba(15,23,42,.03);padding:0 var(--s4);position:sticky;top:0;z-index:100}
+.nav-i{max-width:var(--container);margin:0 auto;display:flex;align-items:center;height:72px}
+.logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);text-decoration:none}
+.logo span{color:var(--accent)}
+.back-link{margin-left:auto;font-size:13px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:5px;font-weight:600;padding:10px 16px;border-radius:999px;background:rgba(26,107,74,.08);transition:all .15s}
+.back-link:hover{background:rgba(26,107,74,.14);color:var(--navy)}
+.page-hero{background:linear-gradient(140deg,#081d33 0%,#113a5f 55%,#0b2944 100%);padding:64px 0 72px;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(255,255,255,.08),transparent 24%),radial-gradient(circle at 86% 18%,rgba(46,158,114,.22),transparent 30%),linear-gradient(135deg,rgba(7,23,39,.14) 0%,rgba(7,23,39,.32) 100%)}
+.phi{max-width:var(--container);margin:0 auto;padding:0 var(--s4);position:relative;z-index:1}
+.sec-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-mid);background:rgba(46,158,114,.15);padding:3px 10px;border-radius:100px;margin-bottom:var(--s2)}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);color:var(--white);margin-bottom:12px;line-height:1.12;letter-spacing:-.4px}
+.page-hero h1 em{font-style:italic;color:var(--accent-mid)}
+.page-hero p{color:rgba(255,255,255,.72);font-size:16px;max-width:700px}
+.badges{margin-top:var(--s3);display:flex;gap:var(--s3);flex-wrap:wrap}
+.hb{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.55);font-size:12px}
+.hb svg{width:13px;height:13px;fill:var(--accent-mid)}
+.cnav{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:72px;z-index:90;box-shadow:0 14px 30px rgba(10,37,64,.06)}
+.cnav-i{max-width:var(--container);margin:0 auto;padding:12px var(--s4) 14px;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.ctab{padding:13px 18px;font-size:13px;font-weight:600;color:var(--ink-mid);border:1px solid #dbe6ef;background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);cursor:pointer;white-space:nowrap;border-radius:18px;transition:all .15s;font-family:'Archivo',sans-serif;box-shadow:0 8px 18px rgba(10,37,64,.05)}
+.ctab:hover{color:var(--navy);background:#fff;border-color:#c7d8e4}
+.ctab.active{color:#fff;background:linear-gradient(135deg,#0a2540 0%,#113a5f 100%);border-color:transparent;font-weight:600;box-shadow:0 18px 40px rgba(10,37,64,.1)}
+.cmain{max-width:var(--container);margin:0 auto;padding:56px var(--s4);display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start}
+.cpanel{display:none}.cpanel.active{display:block}
+.card{background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);border:1px solid #dbe6ef;border-radius:28px;padding:30px 28px;margin-bottom:var(--s3);box-shadow:0 10px 24px rgba(10,37,64,.06)}
+.ct{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:6px}
+.cs{font-size:13px;color:var(--ink-mid);margin-bottom:var(--s4);line-height:1.6}
+.fg{margin-bottom:var(--s3)}
+.fl{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.fh{font-size:11px;color:var(--ink-light);margin-bottom:5px;line-height:1.5}
+.fi{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:15px;font-family:'Archivo',sans-serif;color:var(--ink);background:var(--white);transition:border-color .15s;outline:none}
+.fi:focus{border-color:var(--accent)}
+.fs{width:100%;padding:10px 36px 10px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-size:14px;font-family:'Archivo',sans-serif;color:var(--ink);background:var(--white);cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23475569'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:border-color .15s}
+.fs:focus{border-color:var(--accent)}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.cbrow{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;font-size:13px;color:var(--ink-mid)}
+.cbrow input{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+.btn{width:100%;background:var(--accent);color:var(--white);border:none;padding:13px;border-radius:var(--r-sm);font-size:15px;font-weight:600;font-family:'Archivo',sans-serif;cursor:pointer;transition:background .2s,transform .1s;margin-top:var(--s2)}
+.btn:hover{background:var(--accent-mid);transform:translateY(-1px)}
+.rc{background:var(--navy);border-radius:var(--r-lg);padding:var(--s4);display:none;margin-top:var(--s3)}
+.rc.show{display:block;animation:fi .25s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rst{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-bottom:8px;margin-top:var(--s3)}
+.rst:first-child{margin-top:0}
+.rr{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.rr:last-child{border-bottom:none}
+.rr.rsum{padding:12px 0;border-top:2px solid rgba(255,255,255,.12);border-bottom:none;margin-top:4px}
+.rr.rgrand{padding:12px 14px;border:none;background:rgba(46,158,114,.1);border-radius:var(--r-sm);margin-top:8px}
+.rl{font-size:13px;color:rgba(255,255,255,.6)}
+.rv{font-size:14px;font-weight:600;color:var(--white)}
+.rr.rsum .rl{color:rgba(255,255,255,.85);font-size:13px}
+.rr.rsum .rv{font-size:16px}
+.rr.rgrand .rl{color:rgba(255,255,255,.9);font-weight:600;font-size:14px}
+.rr.rgrand .rv{font-size:20px;color:var(--accent-mid)}
+.rbadge{font-size:10px;font-weight:600;padding:1px 7px;border-radius:100px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.55)}
+.rdbadge{background:rgba(239,159,39,.2);color:#F9CB42}
+.rnote{margin-top:var(--s3);font-size:11px;color:rgba(255,255,255,.3);line-height:1.7;border-top:1px solid rgba(255,255,255,.07);padding-top:var(--s2)}
+.ctbl{width:100%;border-collapse:collapse}
+.ctbl th{background:var(--navy);color:var(--white);padding:10px 14px;font-size:12px;font-weight:600;text-align:left}
+.ctbl td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+.ctbl tr.best td{background:var(--accent-light);font-weight:600;color:var(--accent)}
+.sbc{border-radius:24px;padding:22px 24px;margin-bottom:var(--s3);border:1px solid #dbe6ef;background:linear-gradient(180deg,#ffffff 0%,#f7fafc 100%);box-shadow:0 10px 24px rgba(10,37,64,.06)}
+.sbt{font-size:13px;font-weight:600;margin-bottom:var(--s2)}
+.sbr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:0.5px solid var(--border);font-size:12px}
+.sbr:last-child{border-bottom:none}
+.sbl{color:var(--ink-mid)}
+.sbv{font-weight:600;color:var(--ink)}
+.sbva{color:var(--accent)}
+.ibox{background:linear-gradient(180deg,#eaf6f0 0%,#e1f2ea 100%);border:1px solid rgba(26,107,74,.16);border-radius:24px;padding:22px 24px;margin-bottom:var(--s3);box-shadow:0 10px 24px rgba(26,107,74,.08)}
+.ibox h3{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:8px}
+.ibox p{font-size:12px;color:var(--ink-mid);line-height:1.7}
+@media(max-width:900px){.cmain{grid-template-columns:1fr}.sbcol{display:none}}
+@media(max-width:600px){.fr{grid-template-columns:1fr}.page-hero h1{font-size:26px}.ctab{padding:12px 12px;font-size:12px}.card,.sbc,.ibox{padding:24px 20px}.cnav{top:72px}}
+.cdisclaimer{margin-top:16px;padding:12px 16px;border-top:1px solid var(--border);font-size:10.5px;color:var(--ink-light);line-height:1.6}
+.cdisclaimer p+p{margin-top:5px}
+</style>
+<link rel="alternate" href="https://www.liberpro.pl/kalkulatory.html" hreflang="pl"><link rel="alternate" href="https://www.liberpro.pl/en/kalkulatory.html" hreflang="en"><link rel="alternate" href="https://www.liberpro.pl/kalkulatory.html" hreflang="x-default"></head>
+<body class="calculator-hub-page">
+<nav><div class="nav-i">
+  <a href="./" class="logo">Liber <span>Pro</span></a>
+  <a href="./" class="back-link"><svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>Powrót</a>
+</div></nav>
+
+<div class="page-hero"><div class="phi">
+  <div class="sec-tag">Tools</div>
+  <h1>2026 tax <em>calculators</em></h1>
+  <p>Quick calculations without registration. Data current as of 2026.</p>
+  <div class="badges">
+    <div class="hb"><svg viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>Bezpłatne</div>
+    <div class="hb"><svg viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>Bez rejestracji</div>
+    <div class="hb"><svg viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>Dane 2026</div>
+  </div>
+</div></div>
+
+<div class="cnav"><div class="cnav-i">
+  <button class="ctab active" onclick="sw('zus',this)">ZUS contributions</button>
+  <button class="ctab" onclick="sw('forma',this)">Form of taxation</button>
+  <button class="ctab" onclick="sw('vat',this)">Gross-net VAT</button>
+  <button class="ctab" onclick="sw('wyn',this)">Salary</button>
+</div></div>
+
+<div class="cmain">
+<div>
+
+<!-- ZUS -->
+<div id="p-zus" class="cpanel active">
+<div class="card">
+  <div class="ct">ZUS contributions calculator 2026</div>
+  <div class="cs">Select the status and form of taxation - the calculator will calculate each contribution separately.</div>
+
+  <div class="fg">
+    <label class="fl">Your status</label>
+    <select class="fs" id="z-status" onchange="zOnStatus()">
+      <option value="start">Start-up relief - the first 6 months of operation</option>
+      <option value="pref">Preferential ZUS — 7.–30. month of activity</option>
+      <option value="pelny">Full ZUS - standard (after 30 months)</option>
+      <option value="maly">Small ZUS Plus - annual income up to PLN 120,000</option>
+    </select>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Form of taxation</label>
+    <select class="fs" id="z-forma" onchange="zOnForma()">
+      <option value="ogolna">General rules - tax scale 12%/32%</option>
+      <option value="liniowy">Flat tax - 19%</option>
+      <option value="r60">Lump sum - annual income up to PLN 60,000</option>
+      <option value="r300">Lump sum - annual income PLN 60,001–300,000</option>
+      <option value="rpow">Lump sum - annual income over PLN 300,000</option>
+      <option value="karta">Tax card</option>
+    </select>
+  </div>
+
+  <div class="fg" id="zg-dochod">
+    <label class="fl">Monthly income (PLN)</label>
+    <div class="fh">Health insurance contribution base = revenue minus costs</div>
+    <input type="number" class="fi" id="z-dochod" placeholder="e.g. 8,000" min="0">
+  </div>
+
+  <div class="fg" id="zg-dochod-rok" style="display:none">
+    <label class="fl">Average monthly income from the previous year (PLN)</label>
+    <div class="fh">Small ZUS+ assessment basis (min. PLN 1,441.80 - max. PLN 5,652.00)</div>
+    <input type="number" class="fi" id="z-dochod-rok" placeholder="e.g. 4,000" min="0">
+  </div>
+
+  <div class="fg">
+    <label class="fl">Options</label>
+    <label class="cbrow"><input type="checkbox" id="z-chorob" checked> I pay a voluntary sickness contribution <span style="font-size:11px;color:var(--ink-light);margin-left:4px">(entitles you to benefit)</span></label>
+    <label class="cbrow" id="zr-fp-row"><input type="checkbox" id="z-fp" checked> I pay for the Labor Fund and the Solidarity Fund (2.45%)</label>
+  </div>
+
+  <button class="btn" onclick="calcZUS()">Calculate ZUS contributions →</button>
+
+  <div id="rc-zus" class="rc">
+    <div class="rst">Social contributions</div>
+    <div class="rr" id="zrow-em"><span class="rl">Pension (19.52%)</span><span class="rv" id="zv-em">—</span></div>
+    <div class="rr" id="zrow-re"><span class="rl">Annuity (8.00%)</span><span class="rv" id="zv-re">—</span></div>
+    <div class="rr" id="zrow-ch"><span class="rl">Sick (2.45%) <span class="rbadge rdbadge">dobrowolna</span></span><span class="rv" id="zv-ch">—</span></div>
+    <div class="rr" id="zrow-wy"><span class="rl">Accident (1.67%)</span><span class="rv" id="zv-wy">—</span></div>
+    <div class="rr" id="zrow-fp"><span class="rl">Labor Fund + Fund. Solidarity (2.45%)</span><span class="rv" id="zv-fp">—</span></div>
+    <div class="rr rsum"><span class="rl">Total social contributions</span><span class="rv" id="zv-sp">—</span></div>
+    <div class="rst">Health insurance premium</div>
+    <div class="rr"><span class="rl" id="zl-zdrow">Health insurance premium</span><span class="rv" id="zv-zdrow">—</span></div>
+    <div class="rr rgrand"><span class="rl">TOTAL ZUS CONTRIBUTIONS</span><span class="rv" id="zv-tot">—</span></div>
+    <div class="rnote" id="zv-info"></div>
+  </div>
+</div>
+
+<div class="card" style="background:var(--surface);border-color:transparent">
+  <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:10px">Comparison of stages - total ZUS contributions 2026</div>
+  <div style="overflow-x:auto">
+    <table class="ctbl">
+      <tr><th>Stage</th><th>Social (from illness)</th><th>Min. health</th><th>Total</th></tr>
+      <tr><td>Start-up discount (6 months)</td><td>PLN 0.00</td><td>PLN 432.54</td><td><b>PLN 432.54</b></td></tr>
+      <tr><td>Pref. ZUS (24 months)</td><td>PLN 456.19</td><td>PLN 432.54</td><td><b>~PLN 889</b></td></tr>
+      <tr><td>Little ZUS Plus</td><td>from PLN 456.19</td><td>from PLN 432.54</td><td><b>from ~PLN 889</b></td></tr>
+      <tr class="best"><td>Full ZUS</td><td>PLN 1,926.77</td><td>PLN 432.54+</td><td><b>~PLN 2,360+</b></td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- FORMA -->
+<div id="p-forma" class="cpanel">
+<div class="card">
+  <div class="ct">Which form of taxation is best?</div>
+  <div class="cs">Comparison of lump sum tax, flat tax and tax scale.</div>
+  <div class="fr">
+    <div class="fg"><label class="fl">Monthly revenue (PLN)</label><input type="number" class="fi" id="f-prz" placeholder="e.g. 15,000"></div>
+    <div class="fg"><label class="fl">Monthly costs (PLN)</label><div class="fh">Leasing, office, equipment…</div><input type="number" class="fi" id="f-kos" placeholder="e.g. 3,000"></div>
+  </div>
+  <div class="fg">
+    <label class="fl">Flat rate</label>
+    <select class="fs" id="f-rycz">
+      <option value="0.12">12% – IT, programming, technical services</option>
+      <option value="0.085">8.5% – most general services</option>
+      <option value="0.15">15% – intermediation, freelance professions</option>
+      <option value="0.145">14% – medical and architectural services</option>
+      <option value="0.055">5.5% – manufacturing activities, construction works</option>
+      <option value="0.03">3% – trade, catering</option>
+    </select>
+  </div>
+  <div class="fg">
+    <label class="fl">ZUS stage</label>
+    <select class="fs" id="f-zus">
+      <option value="0">Start-up discount (PLN 0)</option>
+      <option value="456">Preferential ZUS (~PLN 456/month)</option>
+      <option value="1927">Full ZUS (~PLN 1,927/month)</option>
+    </select>
+  </div>
+  <button class="btn" onclick="calcForma()">Compare forms →</button>
+  <div id="rc-forma" class="rc"><div class="rst">Net into your pocket per month</div><div id="forma-rows"></div><div class="rnote">Indicative results. They do not include discounts.</div></div>
+</div>
+<div id="cd-forma" style="display:none"><div class="card"><div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:12px">Detailed comparison</div><div style="overflow-x:auto"><table class="ctbl" id="forma-tbl"></table></div></div></div>
+</div>
+
+<!-- VAT -->
+<div id="p-vat" class="cpanel">
+<div class="card">
+  <div class="ct">Gross-net VAT calculator</div>
+  <div class="cs">Convert the net amount to gross or vice versa.</div>
+  <div class="fg"><label class="fl">VAT rate</label>
+    <select class="fs" id="v-st">
+      <option value="0.23">23% – basic</option>
+      <option value="0.08">8% – construction, catering, medicines</option>
+      <option value="0.05">5% – food, books, e-books</option>
+      <option value="0.00">0% / ZW – export, exempt</option>
+    </select></div>
+  <div class="fg"><label class="fl">Direction</label>
+    <select class="fs" id="v-kier" onchange="document.getElementById('v-lbl').textContent=this.value==='netto'?'Net amount (PLN)':'Gross amount (PLN)'">
+      <option value="netto">I know NET - calculate gross</option>
+      <option value="brutto">I know GROSS - calculate net</option>
+    </select></div>
+  <div class="fg"><label class="fl" id="v-lbl">Net amount (PLN)</label><input type="number" class="fi" id="v-kwota" placeholder="e.g. 1000"></div>
+  <button class="btn" onclick="calcVAT()">Calculate →</button>
+  <div id="rc-vat" class="rc"><div id="vat-rows"></div></div>
+</div>
+<div class="card" style="background:var(--surface);border-color:transparent">
+  <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:8px">VAT exemption limit 2026</div>
+  <p style="font-size:13px;color:var(--ink-mid);line-height:1.7"><strong>PLN 200,000</strong> revenue per year. After crossing, registration is mandatory. Early registration can be beneficial when selling B2B.</p>
+</div>
+</div>
+
+<!-- REMUNERATION -->
+<div id="p-wyn" class="cpanel">
+<div class="card">
+  <div class="ct">Gross-net salary 2026</div>
+  <div class="cs">Calculate the take-home amount and the employer's cost. Min. salary 2026: PLN 4,806 gross.</div>
+  <div class="fg"><label class="fl">Gross salary (PLN)</label><input type="number" class="fi" id="w-br" placeholder="e.g. 6000"></div>
+  <div class="fr">
+    <div class="fg"><label class="fl">Type of contract</label>
+      <select class="fs" id="w-um">
+        <option value="praca">Employment contract</option>
+        <option value="zlecenie">Mandatory contract (with contributions)</option>
+        <option value="student">Mandatory contract - student up to 26 years old</option>
+      </select></div>
+    <div class="fg"><label class="fl">KUP</label>
+      <select class="fs" id="w-kup">
+        <option value="250">PLN 250 - standard</option>
+        <option value="300">PLN 300 - increased (transport)</option>
+      </select></div>
+  </div>
+  <div class="fg"><label class="fl">Tax relief</label>
+    <select class="fs" id="w-ulga">
+      <option value="300">PIT-2 submitted - PLN 300/month.</option>
+      <option value="0">No PIT-2</option>
+    </select></div>
+  <button class="btn" onclick="calcWyn()">Calculate →</button>
+  <div id="rc-wyn" class="rc"><div id="wyn-rows"></div><div class="rnote">Indicatively. It does not include discounts for young people, 4+ or seniors.</div></div>
+</div>
+</div>
+
+</div><!-- end content -->
+
+<!-- SIDEBAR -->
+<div class="sbcol">
+  <div class="ibox"><h3>Need a thorough analysis?</h3><p>Calculators are an orientation tool. Contact our office - first call free of charge.</p><a href="kontakt.html" style="display:block;text-align:center;background:var(--accent);color:white;padding:11px;border-radius:var(--r-sm);font-size:13px;font-weight:600;text-decoration:none;margin-top:12px">Introductory interview →</a></div>
+  <div class="sbc"><div class="sbt">Basics of ZUS 2026</div>
+    <div class="sbr"><span class="sbl">Minimum wage</span><span class="sbv">PLN 4,806</span></div>
+    <div class="sbr"><span class="sbl">Full base (60%)</span><span class="sbv">PLN 5,652</span></div>
+    <div class="sbr"><span class="sbl">Pref. base (30%)</span><span class="sbv">PLN 1,441.80</span></div>
+    <div class="sbr"><span class="sbl">Min. health insurance premium</span><span class="sbv sbva">PLN 432.54</span></div>
+  </div>
+  <div class="sbc"><div class="sbt">Tax brackets 2026</div>
+    <div class="sbr"><span class="sbl">Scale I (up to PLN 120,000)</span><span class="sbv">12%</span></div>
+    <div class="sbr"><span class="sbl">Scale II (over PLN 120,000)</span><span class="sbv">32%</span></div>
+    <div class="sbr"><span class="sbl">Flat tax</span><span class="sbv">19%</span></div>
+    <div class="sbr"><span class="sbl">Free amount</span><span class="sbv">PLN 30,000/year</span></div>
+    <div class="sbr"><span class="sbl">VAT exemption limit</span><span class="sbv sbva">PLN 200,000</span></div>
+  </div>
+  <div class="sbc"><div class="sbt">ZUS contribution rates</div>
+    <div class="sbr"><span class="sbl">Pension</span><span class="sbv">19,52%</span></div>
+    <div class="sbr"><span class="sbl">Pension</span><span class="sbv">8,00%</span></div>
+    <div class="sbr"><span class="sbl">Sick leave (voluntary)</span><span class="sbv">2,45%</span></div>
+    <div class="sbr"><span class="sbl">Accident (up to 9 people)</span><span class="sbv">1,67%</span></div>
+    <div class="sbr"><span class="sbl">FP + Fund. Solidarity.</span><span class="sbv">2,45%</span></div>
+  </div>
+  <div style="padding:12px 16px;background:var(--navy);border-radius:var(--r-lg);text-align:center">
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">Calculation questions?</div>
+    <a href="tel:+48517765128" style="display:block;color:white;font-size:16px;font-weight:600;text-decoration:none">+48 517-765-128</a>
+    <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:4px">Mon–Fri: 8:00–16:00</div>
+  </div>
+</div>
+</div>
+
+<script>function sortBlogByNewest() {
+  var grid = document.getElementById('blogGrid');
+  var cards = Array.from(grid.querySelectorAll('.blog-card'));
+  cards.sort(function(a, b) {
+    var da = a.getAttribute('data-sort-date') || '';
+    var db = b.getAttribute('data-sort-date') || '';
+    return db.localeCompare(da);
+  });
+  cards.forEach(function(card) {
+    card.style.display = '';
+    grid.appendChild(card);
+  });
+}
+
+function filterBlogByKey(key, event) {
+  document.querySelectorAll('.blog-filter').forEach(function(button) {
+    button.classList.remove('active');
+  });
+  if (event && event.currentTarget) {
+    event.currentTarget.classList.add('active');
+  }
+  var cards = Array.from(document.querySelectorAll('#blogGrid .blog-card'));
+  if (key === 'newest') {
+    sortBlogByNewest();
+    return;
+  }
+  cards.forEach(function(card) {
+    var cardKey = card.getAttribute('data-filter-key') || '';
+    card.style.display = key === 'all' || cardKey === key ? '' : 'none';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.blog-filter').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      filterBlogByKey(button.getAttribute('data-filter-key') || 'all', event);
+    });
+  });
+  sortBlogByNewest();
+});</script>
+</body>
+</html>
