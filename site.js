@@ -49,10 +49,22 @@
   }
 
   function getCurrentPath(){
-    var pathname=(window.location.pathname||'').replace(/\/+$/,'');
-    var parts=pathname.split('/');
-    var last=parts[parts.length-1]||'';
-    return (last||'index.html').toLowerCase();
+    var pathname=(window.location.pathname||'/').replace(/\/+/g,'/');
+    if(!pathname){
+      return 'index.html';
+    }
+    pathname=pathname.replace(/\/+$/,'');
+
+    if(pathname==='' || pathname==='/' || pathname==='/index.html' || pathname==='/en' || pathname==='/en/index.html'){
+      return 'index.html';
+    }
+
+    if(pathname.indexOf('/en/')===0){
+      pathname=pathname.slice(3);
+    }
+
+    pathname=pathname.replace(/^\/+/,'').replace(/\/+$/,'');
+    return (pathname||'index.html').toLowerCase();
   }
 
   function getSiteRoot(targetLocale){
@@ -61,11 +73,12 @@
 
   function getSwitchHref(targetLocale){
     var page=getCurrentPath();
+    var search=window.location.search||'';
     var hash=window.location.hash||'';
     if(page==='index.html'){
-      return getSiteRoot(targetLocale)+hash;
+      return getSiteRoot(targetLocale)+search+hash;
     }
-    return getSiteRoot(targetLocale)+page+hash;
+    return getSiteRoot(targetLocale)+page+search+hash;
   }
 
   function normalizeHrefValue(value){
@@ -141,7 +154,7 @@
       }
     }
 
-    document.querySelectorAll('#nav a.active,.btn-cta.active,.mob-menu a.active').forEach(function(el){
+    document.querySelectorAll('#nav a.active:not(.lang-link),.btn-cta.active,.mob-menu a.active:not(.lang-link)').forEach(function(el){
       el.classList.remove('active');
     });
 
@@ -257,15 +270,22 @@
 
   function buildLanguageLink(localeCode){
     var targetLocale=localeCode.toLowerCase();
+    var languageMeta={
+      pl:{short:'PL',label:'Polski'},
+      en:{short:'EN',label:'English'}
+    };
+    var meta=languageMeta[targetLocale] || {short:targetLocale.toUpperCase(),label:targetLocale.toUpperCase()};
     var link=document.createElement('a');
     link.className='lang-link'+(targetLocale===LOCALE ? ' active' : '');
     link.href=getSwitchHref(targetLocale);
-    link.textContent=targetLocale.toUpperCase();
     link.setAttribute('hreflang',targetLocale);
     link.setAttribute('lang',targetLocale);
+    link.setAttribute('aria-label',meta.label);
+    link.setAttribute('title',meta.label);
     if(targetLocale===LOCALE){
       link.setAttribute('aria-current','page');
     }
+    link.textContent=meta.short;
     return link;
   }
 
