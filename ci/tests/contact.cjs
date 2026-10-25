@@ -10,12 +10,12 @@ class E {
  addEventListener(k,fn){this.events[k]=fn;}focus(){this.focused=true;}remove(){if(this.parentElement)this.parentElement.children=this.parentElement.children.filter(x=>x!==this);}
  closest(){return null;}querySelector(){return null;}querySelectorAll(){return [];}
 }
-function fixture({consent,debug=false,legacy=false,locale='pl',withForm=false,response={success:true},httpOk=true,prepareOk=true}={}){
+function fixture({consent,debug=false,legacy=false,locale='pl',withForm=false,response={success:true},httpOk=true,prepareOk=true,pendingPrepare=false,pendingPost=false,pendingJSON=false}={}){
  const jar=new Map([['auth_session','fixture-only']]);if(consent)jar.set('cookie_consent',consent);
  const head=new E('head'),body=new E('body'),footer=new E('footer'),bottom=new E('div');body.appendChild(footer);footer.appendChild(bottom);
  const html=new E('html');html.lang=locale;html.getAttribute=k=>k==='lang'?locale:null;
  const all=()=>{const values=[];function walk(e){values.push(e);e.children.forEach(walk);}walk(head);walk(body);return values;};
- const requests=[],preparations=[],dataLayer=[],timers=[];let clockNow=10000;class ClockDate extends Date{static now(){return clockNow;}};let form,button,fields,tel,mail,cta;
+ const requests=[],preparations=[],dataLayer=[],timers=[];let clockNow=10000,finishPost;class ClockDate extends Date{static now(){return clockNow;}};let form,button,fields,tel,mail,cta;
  const doc={head,body,documentElement:html,readyState:'complete',createElement:tag=>new E(tag),
    getElementById:id=>all().find(e=>e.id===id)||null,
    querySelector:selector=>selector==='footer .footer-bottom'?bottom:selector==='footer'?footer:selector.startsWith('script[src^=')?head.children.find(e=>e.src&&e.src.startsWith('https://www.googletagmanager.com/gtag/js'))||null:null,
@@ -35,11 +35,11 @@ function fixture({consent,debug=false,legacy=false,locale='pl',withForm=false,re
    form.appendChild(button);body.appendChild(form);
    tel=new E('a');tel.attrs.href='tel:+48517765128';mail=new E('a');mail.attrs.href='mailto:kontakt@liberpro.pl';cta=new E('a');cta.attrs.href='kontakt.html';cta.textContent='Kontakt';
  }
- const context=vm.createContext({window:win,document:doc,navigator:win.navigator,URLSearchParams,Date:ClockDate,Intl,Number,Array,Object,String,RegExp,console,
-   setTimeout:(fn,ms)=>{timers.push(fn);return 1;},clearTimeout:()=>{},requestAnimationFrame:fn=>fn(0),
-   fetch:async(url,options)=>{if(url==='/contact.php?action=prepare'){preparations.push({url,options});return {ok:prepareOk,json:async()=>({success:prepareOk,token:'a'.repeat(48),question:'3 + 4',minWait:2,expiresIn:3600})};}requests.push({url,payload:JSON.parse(options.body)});return {ok:httpOk,json:async()=>({...response})};}});
+ const context=vm.createContext({window:win,document:doc,navigator:win.navigator,URLSearchParams,AbortController,Date:ClockDate,Intl,Number,Array,Object,String,RegExp,console,
+   setTimeout:(fn,ms)=>{fn.delay=ms;timers.push(fn);return fn;},clearTimeout:fn=>{const i=timers.indexOf(fn);if(i>=0)timers.splice(i,1);},requestAnimationFrame:fn=>fn(0),
+   fetch:async(url,options)=>{if(url==='/contact.php?action=prepare'){preparations.push({url,options});if(pendingPrepare)return new Promise(()=>{});return {ok:prepareOk,json:async()=>({success:prepareOk,token:'a'.repeat(48),question:'3 + 4',minWait:2,expiresIn:3600})};}requests.push({url,payload:JSON.parse(options.body),signal:options.signal});const result={ok:httpOk,json:()=>pendingJSON?new Promise(()=>{}):Promise.resolve({...response})};if(pendingPost)return new Promise(resolve=>{finishPost=()=>resolve(result);});return result;}});
  vm.runInContext(withForm?site:manager,context);
- return {win,doc,jar,head,requests,preparations,dataLayer,form,button,fields,tel,mail,cta,timers,ready:async()=>{await new Promise(r=>setImmediate(r));clockNow+=3000;const a=doc.getElementById('lp-contact-check-0');if(a)a.value='7';},advance:ms=>clockNow+=ms,events:()=>dataLayer.filter(x=>x[0]==='event').map(x=>({name:x[1],params:x[2]}))};
+ return {win,doc,jar,head,requests,preparations,dataLayer,form,button,fields,tel,mail,cta,timers,finishPost:()=>finishPost(),ready:async()=>{await new Promise(r=>setImmediate(r));clockNow+=3000;const a=doc.getElementById('lp-contact-check-0');if(a)a.value='7';},advance:ms=>clockNow+=ms,events:()=>dataLayer.filter(x=>x[0]==='event').map(x=>({name:x[1],params:x[2]}))};
 }
 function test(name,fn){try{fn();passed++;}catch(e){e.message=name+': '+e.message;throw e;}}
 async function asyncTest(name,fn){try{await fn();passed++;}catch(e){e.message=name+': '+e.message;throw e;}}
@@ -72,6 +72,29 @@ test('Manager is guarded against a second initialization',()=>{const f=fixture({
  await asyncTest('An expired proof is refreshed without sending the message',async()=>{const f=fixture({withForm:true});await f.ready();f.advance(3601000);f.form.events.submit({preventDefault(){}});await flush();assert.equal(f.requests.length,0);assert.ok(f.preparations.length>=2);});
  await asyncTest('English verification has an accessible label',async()=>{const f=fixture({withForm:true,locale:'en'});await f.ready();const a=f.doc.getElementById('lp-contact-check-0');assert.ok(a.required);assert.ok(a.attrs['aria-describedby']);const box=a.parentElement;assert.ok(box.children[0].textContent.includes('Verification: what is 3 + 4?'));assert.equal(box.children[0].htmlFor,a.id);});
  await asyncTest('Proof refreshes after a server rejection and preserves the enquiry',async()=>{const f=fixture({withForm:true,response:{success:false,message:'Verification failed'}});await f.ready();const text=f.fields.message.value;f.form.events.submit({preventDefault(){}});await flush();assert.ok(f.preparations.length>=2);assert.equal(f.fields.message.value,text);assert.equal(f.button.disabled,false);});
+ for(const locale of ['pl','en'])await asyncTest('Pending POST times out, preserves text and ignores late success '+locale,async()=>{
+   const f=fixture({withForm:true,consent:'accepted',pendingPost:true,locale});await f.ready();const text=f.fields.message.value;
+   f.form.events.submit({preventDefault(){}});await flush();assert.equal(f.button.disabled,true);
+   const timeout=f.timers.find(fn=>fn.delay===15000);assert.ok(timeout);timeout();await flush();
+   assert.equal(f.button.disabled,false);assert.equal(f.fields.message.value,text);assert.equal(f.requests.length,1);assert.equal(f.requests[0].signal.aborted,true);
+   assert.match(f.button.textContent,locale==='pl'?/Wiadomość mogła dotrzeć/:/may have arrived/);
+   f.finishPost();await flush();assert.equal(f.events().filter(e=>e.name==='generate_lead').length,0);assert.equal(f.requests.length,1);
+   assert.equal(f.events().filter(e=>e.name==='contact_form_error'&&e.params.error_type==='timeout').length,1);
+ });
+ await asyncTest('Pending verification times out and enables manual refresh',async()=>{
+   const f=fixture({withForm:true,pendingPrepare:true});await f.ready();const a=f.doc.getElementById('lp-contact-check-0');const refresh=a.parentElement.children[3];
+   assert.equal(refresh.disabled,true);f.timers.find(fn=>fn.delay===15000)();await flush();assert.equal(refresh.disabled,false);assert.equal(a.disabled,true);
+   refresh.events.click();await flush();assert.equal(f.preparations.length,2);assert.equal(f.requests.length,0);
+ });
+ await asyncTest('Pending response JSON is included in the request deadline',async()=>{
+   const f=fixture({withForm:true,pendingJSON:true});await f.ready();const text=f.fields.message.value;
+   f.form.events.submit({preventDefault(){}});await flush();f.timers.find(fn=>fn.delay===15000)();await flush();
+   assert.equal(f.button.disabled,false);assert.equal(f.fields.message.value,text);assert.equal(f.requests[0].signal.aborted,true);
+ });
+ await asyncTest('Completed requests cancel their timeout',async()=>{
+   const f=fixture({withForm:true});await f.ready();f.form.events.submit({preventDefault(){}});await flush();
+   assert.equal(f.timers.filter(fn=>fn.delay===15000).length,0);
+ });
  fs.writeFileSync(path.join(base,'contact-measurement-tests.json'),JSON.stringify({checksPassed:passed,mode:'Offline fixtures; no email or analytics requests were sent.'},null,2));
  console.log(JSON.stringify({checksPassed:passed,externalMessagesSent:0,externalAnalyticsRequests:0},null,2));
 })().catch(e=>{console.error(e);process.exitCode=1;});

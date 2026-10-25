@@ -127,6 +127,30 @@
     }
   }
 
+  // Bound both the request and JSON parsing; an abort must not trigger a retry.
+  function contactJSON(url, options){
+    return new Promise(function(resolve,reject){
+      var controller=typeof AbortController==='function'?new AbortController():null;
+      var finished=false;
+      var timer=setTimeout(function(){
+        if(finished)return;
+        finished=true;
+        var error=new Error('Contact request timed out');error.contactTimeout=true;
+        reject(error);
+        if(controller)controller.abort();
+      },15000);
+      function complete(fn,value){
+        if(finished)return;
+        finished=true;clearTimeout(timer);fn(value);
+      }
+      options=Object.assign({},options);
+      if(controller)options.signal=controller.signal;
+      Promise.resolve().then(function(){return fetch(url,options);}).then(function(response){
+        return response.json().then(function(data){return {ok:response.ok,data:data};});
+      }).then(function(value){complete(resolve,value);},function(error){complete(reject,error);});
+    });
+  }
+
   function getCurrentPath(){
     var pathname=(window.location.pathname||'/').replace(/\/+/g,'/');
     if(!pathname){
@@ -468,8 +492,8 @@
         if(verificationLoading)return;
         verificationLoading=true;verificationToken='';verificationAnswer.value='';verificationAnswer.disabled=true;verificationRefresh.disabled=true;
         verificationLabel.textContent=LOCALE==='pl'?'Ładuję weryfikację…':'Loading verification…';
-        fetch('/contact.php?action=prepare',{method:'GET',credentials:'same-origin',cache:'no-store'}).then(function(response){
-          if(!response.ok)throw new Error('verification');return response.json();
+        contactJSON('/contact.php?action=prepare',{method:'GET',credentials:'same-origin',cache:'no-store'}).then(function(response){
+          if(!response.ok)throw new Error('verification');return response.data;
         }).then(function(data){
           if(!data || !data.success || !/^[a-f0-9]{48}$/.test(data.token) || !/^\d \+ \d$/.test(data.question))throw new Error('verification');
           verificationToken=data.token;
@@ -545,12 +569,12 @@
         button.style.background='#0044A7';
 
         var sendVerifiedMessage=function(){
-        fetch('/contact.php',{
+        contactJSON('/contact.php',{
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify(payload)
         }).then(function(response){
-          return response.json().then(function(data){if(!response.ok)data.success=false;return data;});
+          var data=response.data;if(!response.ok && data)data.success=false;return data;
         }).then(function(data){
           loadVerification();
           if(data && data.success){
@@ -578,12 +602,14 @@
           button.style.background='#b45309';
           button.disabled=false;
           trackEvent('contact_form_error',{error_type:'server_error',page_path:window.location.pathname});
-        }).catch(function(){
+        }).catch(function(error){
           loadVerification();
-          setMessage(STRINGS.formErrorCall);
+          setMessage(error && error.contactTimeout
+            ? (LOCALE==='pl'?'Nie otrzymano potwierdzenia wysyłki. Wiadomość mogła dotrzeć. Treść została zachowana — odczekaj chwilę lub skontaktuj się telefonicznie.':'No delivery confirmation received. Your message may have arrived. Your text has been kept — wait a moment or contact us by phone.')
+            : STRINGS.formErrorCall);
           button.style.background='#b45309';
           button.disabled=false;
-          trackEvent('contact_form_error',{error_type:'network_error',page_path:window.location.pathname});
+          trackEvent('contact_form_error',{error_type:error && error.contactTimeout?'timeout':'network_error',page_path:window.location.pathname});
         });
         };
         var verificationWait=Math.max(0,verificationReadyAt-Date.now());

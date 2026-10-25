@@ -33,6 +33,7 @@ jobs:
         run: |
           python3 ci/tests/deployment.py
           python3 ci/agent/tests.py
+          python3 ci/agent/transaction_tests.py
       - name: Recent content and tracking regression tests
         run: node ci/tests/recent.cjs
       - name: Test summary

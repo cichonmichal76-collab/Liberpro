@@ -43,12 +43,43 @@ def source_files(data,head):
             files[name]=archive.read(entry)
         if not all(n in files for n in ['.htaccess','index.html','contact.php','site.js','style.css','sitemap.xml']):raise ValueError('Incomplete website')
         return files
-def atomic_json(path,data):
+def atomic_bytes(path,data,mode=0o600):
     if path.is_symlink():raise ValueError('Refusing symlink metadata')
     tmp=path.with_name(path.name+'.'+uuid.uuid4().hex+'.partial')
     fd=os.open(str(tmp),os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
-    with os.fdopen(fd,'w',encoding='utf-8') as out:json.dump(data,out,ensure_ascii=False,indent=2);out.write('\n');out.flush();os.fsync(out.fileno())
-    os.replace(str(tmp),str(path))
+    try:
+        with os.fdopen(fd,'wb') as out:
+            out.write(data);out.flush();os.fchmod(out.fileno(),mode);os.fsync(out.fileno())
+        os.replace(str(tmp),str(path))
+    finally:
+        if tmp.exists():tmp.unlink()
+
+def atomic_json(path,data,mode=0o600):
+    atomic_bytes(path,(json.dumps(data,ensure_ascii=False,indent=2)+'\n').encode('utf-8'),mode)
+
+def publication_records(private,receipt,head,run_id,release_id):
+    """Snapshot both records before writes; restore exact previous bytes and modes."""
+    previous=[]
+    for path in [private,receipt]:
+        if path.is_symlink():raise ValueError('Refusing symlink metadata')
+        previous.append((path,path.read_bytes() if path.exists() else None,stat.S_IMODE(path.stat().st_mode) if path.exists() else None))
+    public={}
+    def commit(result):
+        atomic_json(private,dict(result,commit=head,runId=run_id,transport='hosting-pull-https'))
+        public.update(domain='liberpro.pl',status='PASS',commit=head,runId=run_id,release=release_id,checksPassed=18,publishedUTC=datetime.datetime.now(datetime.timezone.utc).isoformat())
+        atomic_json(receipt,public,0o644)
+    def rollback():
+        errors=[]
+        for path,data,mode in previous:
+            try:
+                if path.is_symlink():raise ValueError('Refusing symlink metadata')
+                if data is None:
+                    if path.exists():path.unlink()
+                elif not path.exists() or path.read_bytes()!=data or stat.S_IMODE(path.stat().st_mode)!=mode:
+                    atomic_bytes(path,data,mode)
+            except Exception:errors.append(path.name)
+        if errors:raise RuntimeError('Cannot restore publication records: '+','.join(errors))
+    return commit,rollback,public
 def requested_commit(argv=None):
     parser=argparse.ArgumentParser(description='One-off Liber Pro publication requested by its owner')
     parser.add_argument('--commit',help='Exact tested main commit explicitly approved for publication')
@@ -64,7 +95,7 @@ def main():
     root=HERE.parent;adapter=LocalFiles(root);verify_target(adapter)
     with (HERE/'worker.lock').open('a') as lock:
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        except BlockingIOError:return
+        except BlockingIOError:raise RuntimeError('Another publication is running; retry after it completes')
         runtime={'python':platform.python_version(),'domain':'liberpro.pl','rootMarker':'PASS','databaseOperations':0,'portalOperations':0}
         atomic_json(HERE/'runtime.json',runtime)
         config=json.loads((HERE/'config.json').read_text())
@@ -76,22 +107,25 @@ def main():
         if receipt.is_symlink():raise ValueError('Refusing symlink receipt')
         if receipt.is_file():
             previous=json.loads(receipt.read_text())
-            if previous.get('commit')==head and previous.get('status')=='PASS':return
+            if previous.get('commit')==head and previous.get('status')=='PASS':
+                print('Already published: '+head)
+                return
         runs=api('actions/workflows/'+WORKFLOW+'/runs?event=push&branch=main&per_page=10')['workflow_runs']
         run=tested_run(head,runs,lambda run_id:api('actions/runs/'+str(run_id)+'/jobs?per_page=100')['jobs'])
-        if run is None:return
+        if run is None:raise RuntimeError('Publication blocked: current main requires successful Validate and Browser jobs from the expected push workflow')
         files=source_files(fetch('https://codeload.github.com/'+REPOSITORY+'/zip/'+head),head)
-        if api('git/ref/heads/main')['object']['sha']!=head:return
+        if api('git/ref/heads/main')['object']['sha']!=head:raise RuntimeError('Publication blocked: main changed while downloading; request the new tested revision')
         baseline=json.loads((HERE/'baseline.json').read_text())
         release_id=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+str(run['id'])
-        result=release(adapter,files,baseline,release_id,lambda:check_public(files))
-        result.update(commit=head,runId=run['id'],transport='hosting-pull-https')
-        atomic_json(HERE/'last-result.json',result)
-        public={'domain':'liberpro.pl','status':'PASS','commit':head,'runId':run['id'],'release':release_id,'checksPassed':18,'publishedUTC':datetime.datetime.now(datetime.timezone.utc).isoformat()}
-        atomic_json(receipt,public);receipt.chmod(0o644)
+        commit,rollback,public=publication_records(HERE/'last-result.json',receipt,head,run['id'],release_id)
+        release(adapter,files,baseline,release_id,lambda:check_public(files),commit,rollback)
         print(json.dumps(public))
-if __name__=='__main__':
-    try:main()
+def cli():
+    try:
+        main()
+        return 0
     except Exception as error:
         print('Liber Pro deployment stopped: '+str(error),file=sys.stderr)
-        sys.exit(1)
+        return 1
+
+if __name__=='__main__':sys.exit(cli())

@@ -55,7 +55,8 @@ def read_archive(data):
             if name in files or entry.size>3_000_000:raise ValueError('Invalid backup member')
             files[name]=tar.extractfile(entry).read()
     return files
-def release(ftp,new_files,baseline,release_id,smoke):
+def release(ftp,new_files,baseline,release_id,smoke,finalize=None,rollback_finalize=None):
+    if (finalize is None)!=(rollback_finalize is None):raise ValueError('Publication metadata requires both commit and rollback callbacks')
     verify_target(ftp)
     if not re.fullmatch(r'[a-zA-Z0-9-]{8,100}',release_id):raise ValueError('Invalid release ID')
     new_files={safe_path(n):b for n,b in new_files.items()}
@@ -77,6 +78,7 @@ def release(ftp,new_files,baseline,release_id,smoke):
     checked_put(ftp,probe_source,b'Liber Pro deployment permission probe\n');ftp.rename(probe_source,probe_dest);ftp.delete(probe_dest)
     for name,data in changes.items():
         if data is not None:checked_put(ftp,stage+'/'+name,data)
+    result={'status':'PASS','release':release_id,'managedFiles':len(new_files),'changedFiles':len(changes),'backup':backup,'backupSHA256':sha(backup_data),'publicSmoke':'PASS','databaseOperations':0,'portalOperations':0}
     attempted=[]
     try:
         for name,data in sorted(changes.items()):
@@ -89,6 +91,7 @@ def release(ftp,new_files,baseline,release_id,smoke):
         smoke()
         new_state=json.dumps({'release':release_id,'repository':REPOSITORY,'files':{n:sha(b) for n,b in sorted(new_files.items())}},indent=2).encode()
         checked_put(ftp,STATE+'.partial',new_state);ftp.rename(STATE+'.partial',STATE)
+        if finalize is not None:finalize(result)
     except Exception as original:
         errors=[]
         for name in reversed(attempted):
@@ -103,6 +106,9 @@ def release(ftp,new_files,baseline,release_id,smoke):
                 if previous is None:ftp.delete(STATE)
                 else:checked_put(ftp,STATE+'.restore',previous);ftp.rename(STATE+'.restore',STATE)
         except Exception:errors.append(STATE)
+        if rollback_finalize is not None:
+            try:rollback_finalize()
+            except Exception:errors.append('publication metadata')
         if errors:raise RuntimeError('Deployment failed; manual recovery required for: '+','.join(errors)+'; backup '+backup) from original
         raise RuntimeError('Deployment failed; original website restored; backup '+backup) from original
-    return {'status':'PASS','release':release_id,'managedFiles':len(new_files),'changedFiles':len(changes),'backup':backup,'backupSHA256':sha(backup_data),'publicSmoke':'PASS','databaseOperations':0,'portalOperations':0}
+    return result
