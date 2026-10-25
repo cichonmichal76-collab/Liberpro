@@ -1,10 +1,10 @@
-"""Pull only a tested main revision. Install outside WWW; run using hosting cron.
+"""Publish one explicitly requested tested main revision. Install outside WWW.
 No credentials, shell execution, database access or downloaded Python execution.
 """
 from pathlib import Path
 from urllib.request import Request,build_opener,HTTPRedirectHandler
 from urllib.parse import urlsplit
-import os,sys,json,re,io,zipfile,stat,hashlib,datetime,fcntl,uuid,platform
+import os,sys,json,re,io,zipfile,stat,hashlib,datetime,fcntl,uuid,platform,argparse
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE));sys.path.insert(0,str(HERE.parent))
 from localftp import LocalFiles
@@ -49,7 +49,17 @@ def atomic_json(path,data):
     fd=os.open(str(tmp),os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w',encoding='utf-8') as out:json.dump(data,out,ensure_ascii=False,indent=2);out.write('\n');out.flush();os.fsync(out.fileno())
     os.replace(str(tmp),str(path))
+def requested_commit(argv=None):
+    parser=argparse.ArgumentParser(description='One-off Liber Pro publication requested by its owner')
+    parser.add_argument('--commit',help='Exact tested main commit explicitly approved for publication')
+    args=parser.parse_args(argv)
+    if args.commit is not None and not re.fullmatch(r'[0-9a-f]{40}',args.commit):parser.error('--commit requires a complete 40-character SHA')
+    return args.commit
 def main():
+    approved=requested_commit()
+    if approved is None:
+        print('Manual mode: no publication requested; no hosting or GitHub checks performed.')
+        return
     os.umask(0o077)
     root=HERE.parent;adapter=LocalFiles(root);verify_target(adapter)
     with (HERE/'worker.lock').open('a') as lock:
@@ -58,9 +68,10 @@ def main():
         runtime={'python':platform.python_version(),'domain':'liberpro.pl','rootMarker':'PASS','databaseOperations':0,'portalOperations':0}
         atomic_json(HERE/'runtime.json',runtime)
         config=json.loads((HERE/'config.json').read_text())
-        if config!={'enabled':True}:return
+        if config!={'mode':'manual'}:raise RuntimeError('Hosting is not configured for manual publication')
         head=api('git/ref/heads/main')['object']['sha']
         if not re.fullmatch(r'[0-9a-f]{40}',head):raise ValueError('Invalid main revision')
+        if head!=approved:raise RuntimeError('Current main differs from the explicitly requested revision')
         receipt=root/'public_html'/RECEIPT
         if receipt.is_symlink():raise ValueError('Refusing symlink receipt')
         if receipt.is_file():

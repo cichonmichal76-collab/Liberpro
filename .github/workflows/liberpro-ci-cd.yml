@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       deploy:
-        description: Deploy tested main branch to liberpro.pl
+        description: Confirm an explicitly requested one-off hosting deployment
         type: boolean
         default: false
 permissions:
@@ -64,9 +64,9 @@ jobs:
             test-results/
           retention-days: 14
   deploy:
-    name: Deploy liberpro.pl
+    name: Confirm manual deployment
     needs: [validate, browser]
-    if: github.repository == 'cichonmichal76-collab/Liberpro' && github.ref == 'refs/heads/main' && vars.LIBERPRO_DEPLOY_ENABLED == 'true' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy))
+    if: github.repository == 'cichonmichal76-collab/Liberpro' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && inputs.deploy
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     concurrency: {group: liberpro-production, cancel-in-progress: false}
