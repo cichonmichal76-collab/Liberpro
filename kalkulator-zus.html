@@ -11,7 +11,10 @@
 <meta property="og:url" content="https://www.liberpro.pl/kalkulator-zus.html">
 <meta property="og:title" content="Kalkulator ZUS 2026 | Liber Pro Księgowość">
 <meta property="og:description" content="Wylicz składki ZUS dla swojej firmy. Pełny, preferencyjny, Mały ZUS+, tylko zdrowotna — wszystkie formy opodatkowania.">
-<meta property="og:image" content="https://www.liberpro.pl/logo.png">
+<meta property="og:image" content="https://www.liberpro.pl/social-cover-2026.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://www.liberpro.pl/social-cover-2026.png">
 <meta property="og:locale" content="pl_PL">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -19,8 +22,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css?v=20260719-9">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -45,8 +48,8 @@
     }
   ]
 }</script>
-<script src="cookies.js" defer></script>
-<script src="site.js" defer></script>
+<script src="cookies.js?v=20260719-9" defer></script>
+<script src="site.js?v=20260719-9" defer></script>
 
 <style>
 /* ─── kalkulator ZUS ─── */
@@ -196,7 +199,7 @@
 
 <nav id="nav">
   <div class="nav-i">
-    <a href="/" class="logo"><img src="logo.png" alt="Liber Pro Księgowość" height="48" width="auto"></a>
+    <a href="/" class="logo"><img src="logo-display.png" alt="Liber Pro Księgowość" width="168" height="48"></a>
     <ul class="nav-links">
       <li><a href="o-nas.html">O nas</a></li>
       <li class="has-sub">
@@ -259,7 +262,7 @@
         <div class="zus-body">
 
           <p class="zus-desc">
-            Nasz kalkulator ZUS pomoże Ci wyliczyć dokładną wysokość składek, które musisz opłacić, biorąc pod uwagę formę opodatkowania oraz przychody Twojej firmy. Uwzględnia pełny ZUS, preferencyjny, Mały ZUS+ oraz tryb tylko zdrowotny (Wakacje od ZUS).
+            Nasz kalkulator ZUS pomoże Ci wyliczyć orientacyjną wysokość składek, biorąc pod uwagę formę opodatkowania oraz przychody Twojej firmy. Uwzględnia pełny ZUS, preferencyjny, Mały ZUS+ oraz tryb tylko zdrowotny przy wakacjach składkowych.
           </p>
 
           <!-- rodzaj ZUS -->
@@ -279,7 +282,9 @@
               <label for="r-tylko" class="zus-radio-lbl"><span class="zus-radio-dot"></span>Tylko zdrowotna</label>
             </div>
             <div class="zus-info" id="info-wakacje">
-              <strong>Wakacje od ZUS</strong> — Jeśli korzystasz z tego wsparcia, wybierz opcję <em>Tylko zdrowotna</em>. W tym trybie płacisz jedynie składkę zdrowotną, bez składek społecznych.
+              <strong>Korzystasz z wakacji składkowych?</strong><br>
+              Jeżeli przyznano Ci wakacje składkowe za dany miesiąc, za siebie nadal opłacasz składkę zdrowotną. Zwolnienie nie obejmuje składek za pracowników i zleceniobiorców. Sprawdź także termin wniosku RWS, limit ubezpieczonych oraz dokumenty, które trzeba złożyć po otrzymaniu ulgi.<br>
+              <a href="blog-wakacje-skladkowe-2026-rws.html">Przeczytaj: Wakacje składkowe 2026 — wniosek RWS i zasady rozliczenia →</a>
             </div>
             <div class="zus-info" id="info-maly" style="display:none">
               <strong>Mały ZUS+</strong> — Podstawa wymiaru składek zależy od średniomiesięcznego dochodu z poprzedniego roku (min. 1 441,80 zł, max 5 652 zł). Podaj swój dochód poniżej.
@@ -450,7 +455,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <img src="logo.png" alt="Liber Pro Księgowość" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
+      <img src="logo-display.png" alt="Liber Pro Księgowość" width="154" height="44" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
       <p class="f-tagline">Twoje finanse w dobrych rękach.<br>Razem budujemy Twój sukces.</p>
       <div class="footer-badges">
         <span>Zdalnie i stacjonarnie</span>
@@ -458,7 +463,7 @@
       </div>
     </div>
     <div class="f-col">
-      <h4>Na skróty</h4>
+      <p class="footer-heading">Na skróty</p>
       <ul class="f-links">
         <li><a href="/">Strona główna</a></li>
         <li><a href="o-nas.html">O nas</a></li>
@@ -469,7 +474,7 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Usługi</h4>
+      <p class="footer-heading">Usługi</p>
       <ul class="f-links">
         <li><a href="ksiegowosc.html">Księgowość</a></li>
         <li><a href="kadry.html">Kadry i Płace</a></li>
@@ -478,7 +483,7 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Kontakt</h4>
+      <p class="footer-heading">Kontakt</p>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"></path></svg><span>Piekary koło Krakowa</span></div>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg><a href="tel:+48517765128">+48 517-765-128</a></div>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg><a href="#" data-email><span class="email-text">kontakt(at)liberpro.pl</span></a></div>
@@ -677,3 +682,4 @@
 
 </body>
 </html>
+

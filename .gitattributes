@@ -1,0 +1,2 @@
+# Preserve the verified production bytes across Windows/Linux checkouts.
+* -text

@@ -9,6 +9,10 @@
 <link rel="alternate" href="https://www.liberpro.pl/o-nas.html" hreflang="pl"><link rel="alternate" href="https://www.liberpro.pl/en/o-nas.html" hreflang="en"><link rel="alternate" href="https://www.liberpro.pl/o-nas.html" hreflang="x-default"><meta property="og:type" content="website">
 <meta property="og:title" content="O nas | Liber Pro Księgowość – Piekary koło Krakowa">
 <meta property="og:description" content="Poznaj Liber Pro Księgowość z Piekar koło Krakowa. Certyfikat Ministra Finansów, dedykowany opiekun i obsługa firm z całej Polski.">
+<meta property="og:image" content="https://www.liberpro.pl/social-cover-2026.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://www.liberpro.pl/social-cover-2026.png">
 <meta property="og:url" content="https://www.liberpro.pl/o-nas.html">
 <meta property="og:locale" content="pl_PL">
 <meta name="description" content="Poznaj Liber Pro Księgowość z Piekar koło Krakowa. Certyfikat Ministra Finansów, dedykowany opiekun i obsługa firm z całej Polski.">
@@ -17,10 +21,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<script src="cookies.js" defer></script>
-<script src="site.js" defer></script>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css?v=20260719-9">
+<script src="cookies.js?v=20260719-9" defer></script>
+<script src="site.js?v=20260719-9" defer></script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -71,7 +75,7 @@
 
 <nav id="nav">
   <div class="nav-i">
-    <a href="/" class="logo"><img src="logo.png" alt="Liber Pro Księgowość" height="48" width="auto"></a>
+    <a href="/" class="logo"><img src="logo-display.png" alt="Liber Pro Księgowość" width="168" height="48"></a>
     <ul class="nav-links">
       <li><a href="o-nas.html">O nas</a></li>
       <li class="has-sub">
@@ -132,7 +136,7 @@
     </div>
     <aside class="subpage-hero-panel">
       <span class="subpage-hero-kicker">Jak pracujemy</span>
-      <h3>Porządkujemy księgowość tak, by firma mogła rosnąć spokojnie.</h3>
+      <h2>Porządkujemy księgowość tak, by firma mogła rosnąć spokojnie.</h2>
       <p>Klient od początku wie, kto prowadzi sprawy, jak wygląda wymiana dokumentów i kiedy dostaje odpowiedź.</p>
       <div class="subpage-panel-metrics">
         <div class="subpage-metric">
@@ -162,6 +166,30 @@
   </div>
 </div>
 
+<!-- OSOBA ODPOWIEDZIALNA -->
+<section class="section-pad" aria-labelledby="owner-heading">
+  <div class="container">
+    <div class="approach-grid">
+      <div>
+        <span class="sec-tag">Osoba odpowiedzialna</span>
+        <h2 class="sec-title" id="owner-heading">Za Liber Pro stoi <em>Monika Cichoń</em></h2>
+        <p class="sec-desc">Właścicielka Liber Pro Księgowość odpowiada za standard obsługi, organizację pracy biura i kontakt z klientami. Firma działa w Piekarach koło Krakowa i obsługuje przedsiębiorców stacjonarnie oraz zdalnie.</p>
+        <a href="kontakt.html" class="btn-primary" style="display:inline-block;margin-top:var(--s3)">Skontaktuj się z biurem</a>
+      </div>
+      <div class="approach-panel">
+        <span class="subpage-hero-kicker">Potwierdzone informacje</span>
+        <h3 style="color:#fff;margin:10px 0 14px">Monika Cichoń<br><span style="font-size:var(--fs-base);font-family:'Archivo',sans-serif;font-weight:500;color:rgba(255,255,255,.72)">właścicielka Liber Pro Księgowość</span></h3>
+        <div class="ap-items">
+          <div class="ap-item"><div class="ap-check">✓</div>Certyfikat Księgowy Ministra Finansów</div>
+          <div class="ap-item"><div class="ap-check">✓</div>Obowiązkowe ubezpieczenie OC biura rachunkowego</div>
+          <div class="ap-item"><div class="ap-check">✓</div>Piekary koło Krakowa · obsługa całej Polski</div>
+          <div class="ap-item"><div class="ap-check">✓</div>Kontakt: +48 517-765-128 · kontakt@liberpro.pl</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- KORZYŚCI -->
 <section class="section-pad" style="background:var(--surface)">
   <div class="container">
@@ -174,7 +202,7 @@
       </div>
       <div class="bc-card">
         <div class="bc-icon"><svg viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg></div>
-        <div><div class="bc-title">Terminowość gwarantowana</div><div class="bc-desc">Żadnych kar za spóźnione deklaracje. Pilnujemy kalendarza podatkowego za Ciebie.</div></div>
+        <div><div class="bc-title">Kontrola terminów</div><div class="bc-desc">Prowadzimy kalendarz obowiązków i z wyprzedzeniem informujemy o potrzebnych dokumentach oraz płatnościach.</div></div>
       </div>
       <div class="bc-card">
         <div class="bc-icon"><svg viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"></path></svg></div>
@@ -197,18 +225,18 @@
         <span class="sec-tag">Nasze zalety</span>
         <h2 class="sec-title">Co sprawia, że jesteśmy <em>właściwym wyborem</em></h2>
       </div>
-      <p class="sec-desc">Nasze doświadczenie w księgowości i obsłudze kadrowo-płacowej pozwala na terminowe i poprawne rozliczenia, eliminując ryzyko błędów i kar. Stawiamy na nowoczesne, cyfrowe rozwiązania.</p>
+      <p class="sec-desc">Nasze doświadczenie w księgowości i obsłudze kadrowo-płacowej pomaga prowadzić terminowe i poprawne rozliczenia oraz ograniczać ryzyko błędów. Stawiamy na nowoczesne, cyfrowe rozwiązania.</p>
     </div>
     <div class="values-grid">
       <div class="val-card">
         <div class="val-icon"><svg viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg></div>
         <h3>Terminowość i poprawność</h3>
-        <p>Nasze doświadczenie w księgowości i obsłudze kadrowo-płacowej pozwala na terminowe i poprawne rozliczenia, eliminując ryzyko błędów i kar.</p>
+        <p>Nasze doświadczenie w księgowości i obsłudze kadrowo-płacowej pomaga prowadzić terminowe i poprawne rozliczenia oraz ograniczać ryzyko błędów.</p>
       </div>
       <div class="val-card">
         <div class="val-icon"><svg viewbox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg></div>
         <h3>Rzetelność dokumentacji</h3>
-        <p>Dzięki naszej wiedzy z zakresu rachunkowości finansowej i podatkowej masz gwarancję, że wszystkie dokumenty są prowadzone rzetelnie i zgodnie z przepisami.</p>
+        <p>Wiedza z zakresu rachunkowości finansowej i podatkowej pomaga nam prowadzić dokumentację rzetelnie i zgodnie z obowiązującymi przepisami.</p>
       </div>
       <div class="val-card">
         <div class="val-icon"><svg viewbox="0 0 24 24"><path d="M4 19h16v2H4v-2zm2-9h3v7H6v-7zm5-4h3v11h-3V6zm5 5h3v6h-3v-6z"></path></svg></div>
@@ -243,11 +271,11 @@
         <h2 class="sec-title">Nasze podejście do <em>każdego klienta</em></h2>
         <p class="sec-desc">Nie jesteśmy anonimowym biurem – każdy klient ma swojego dedykowanego opiekuna, który zna jego firmę i jest dostępny wtedy, kiedy trzeba.</p>
         <div class="steps">
-          <div class="step"><div class="step-num">1</div><div><h4>Poznajemy Twoją firmę</h4><p>Analizujemy branżę, skalę i specyficzne potrzeby przed podjęciem współpracy.</p></div></div>
-          <div class="step"><div class="step-num">2</div><div><h4>Ustalamy zakres obsługi</h4><p>Dobieramy usługi dokładnie do tego, czego Twoja firma potrzebuje.</p></div></div>
-          <div class="step"><div class="step-num">3</div><div><h4>Wdrażamy cyfrowy obieg</h4><p>Konfigurujemy bezpieczną wymianę dokumentów online – szybko i wygodnie.</p></div></div>
-          <div class="step"><div class="step-num">4</div><div><h4>Bieżąca obsługa i raportowanie</h4><p>Prowadzimy księgi, pilnujemy terminów i dostarczamy czytelne raporty.</p></div></div>
-          <div class="step"><div class="step-num">5</div><div><h4>Bieżąca obsługa i wsparcie organizacyjne</h4><p>Pozostajemy do dyspozycji przy bieżącej obsłudze dokumentów, zmianach organizacyjnych i formalnościach związanych z działalnością firmy.</p></div></div>
+          <div class="step"><div class="step-num">1</div><div><h3>Poznajemy Twoją firmę</h3><p>Analizujemy branżę, skalę i specyficzne potrzeby przed podjęciem współpracy.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div><h3>Ustalamy zakres obsługi</h3><p>Dobieramy usługi dokładnie do tego, czego Twoja firma potrzebuje.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div><h3>Wdrażamy cyfrowy obieg</h3><p>Konfigurujemy bezpieczną wymianę dokumentów online – szybko i wygodnie.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div><h3>Bieżąca obsługa i raportowanie</h3><p>Prowadzimy księgi, pilnujemy terminów i dostarczamy czytelne raporty.</p></div></div>
+          <div class="step"><div class="step-num">5</div><div><h3>Bieżąca obsługa i wsparcie organizacyjne</h3><p>Pozostajemy do dyspozycji przy bieżącej obsłudze dokumentów, zmianach organizacyjnych i formalnościach związanych z działalnością firmy.</p></div></div>
         </div>
       </div>
       <div class="approach-panel">
@@ -257,7 +285,7 @@
           <div class="ap-item"><div class="ap-check"><svg viewbox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>Jeden opiekun – stały kontakt, bez przerzucania między pracownikami</div>
           <div class="ap-item"><div class="ap-check"><svg viewbox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>Obsługa stacjonarna i zdalna – cała Polska</div>
           <div class="ap-item"><div class="ap-check"><svg viewbox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>Pon.–Pt.: 8:00–16:00</div>
-          <div class="ap-item"><div class="ap-check"><svg viewbox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>Pierwsza rozmowa wstępna bezpłatna</div>
+          <div class="ap-item"><div class="ap-check"><svg viewbox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>Indywidualne podejście od pierwszego kontaktu</div>
           <div class="ap-item"><div class="ap-check"><svg viewbox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>Ubezpieczenie OC biura rachunkowego</div>
         </div>
         <a href="kontakt.html" class="btn-primary" style="margin-top:var(--s3);display:inline-block">Umów rozmowę wstępną</a>
@@ -271,7 +299,7 @@
   <div class="cta-i">
     <div class="cta-text">
       <h2>Szukasz rzetelnego biura rachunkowego? Sprawdź co nas wyróżnia.</h2>
-      <p>Skontaktuj się z nami – pierwsza rozmowa wstępna jest bezpłatna.</p>
+      <p>Skontaktuj się z nami – odpowiadamy w ciągu jednego dnia roboczego.</p>
     </div>
     <a href="kontakt.html" class="btn-white">Napisz do nas</a>
   </div>
@@ -284,7 +312,7 @@
     <div style="max-width:820px;margin:0 auto;text-align:center">
       <span class="sec-tag">Uprawnienia i gwarancje</span>
       <h2 class="sec-title">Zaufaj <em>sprawdzonym</em> specjalistom</h2>
-      <p class="sec-desc" style="max-width:600px;margin:0 auto var(--s4)">Właścicielka biura posiada Certyfikat Księgowy Ministra Finansów – jedno z najbardziej prestiżowych uprawnień w zawodzie, przyznawane po zdaniu egzaminu państwowego. Od 2014 roku certyfikat nie jest już wydawany nowym kandydatom. Posiadamy obowiązkowe ubezpieczenie OC biura rachunkowego.</p>
+      <p class="sec-desc" style="max-width:600px;margin:0 auto var(--s4)">Monika Cichoń, właścicielka Liber Pro Księgowość, posiada Certyfikat Księgowy Ministra Finansów potwierdzający kwalifikacje zawodowe. Biuro posiada również obowiązkowe ubezpieczenie OC.</p>
       <div style="display:flex;gap:var(--s3);justify-content:center;flex-wrap:wrap;margin-top:var(--s3)">
         <div style="display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--border);border-radius:var(--r-md);padding:14px 20px">
           <svg width="22" height="22" viewbox="0 0 24 24" fill="var(--accent)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path></svg>
@@ -296,7 +324,7 @@
         </div>
         <div style="display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--border);border-radius:var(--r-md);padding:14px 20px">
           <svg width="22" height="22" viewbox="0 0 24 24" fill="var(--accent)"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"></path></svg>
-          <span style="font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Pierwsza rozmowa wstępna bezpłatna</span>
+          <span style="font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Indywidualne podejście od pierwszego kontaktu</span>
         </div>
       </div>
     </div>
@@ -307,7 +335,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <img src="logo.png" alt="Liber Pro Księgowość" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
+      <img src="logo-display.png" alt="Liber Pro Księgowość" width="154" height="44" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
       <p class="f-tagline">Twoje finanse w dobrych rękach.<br>Razem budujemy Twój sukces.</p>
       <div class="footer-badges">
         <span>Zdalnie i stacjonarnie</span>
@@ -315,7 +343,7 @@
       </div>
     </div>
     <div class="f-col">
-      <h4>Na skróty</h4>
+      <p class="footer-heading">Na skróty</p>
       <ul class="f-links">
         <li><a href="/">Strona główna</a></li>
         <li><a href="o-nas.html">O nas</a></li>
@@ -326,7 +354,7 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Usługi</h4>
+      <p class="footer-heading">Usługi</p>
       <ul class="f-links">
         <li><a href="ksiegowosc.html">Księgowość</a></li>
         <li><a href="kadry.html">Kadry i Płace</a></li>
@@ -335,7 +363,7 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Kontakt</h4>
+      <p class="footer-heading">Kontakt</p>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"></path></svg><span>Piekary koło Krakowa</span></div>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg><a href="tel:+48517765128">+48 517-765-128</a></div>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg><a href="#" data-email><span class="email-text">kontakt(at)liberpro.pl</span></a></div>
@@ -351,3 +379,4 @@
 
 </body>
 </html>
+
