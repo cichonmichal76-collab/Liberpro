@@ -18,6 +18,6 @@ Before each release, managed public files are backed up to `ci-backups/` outside
 
 `ci-agent/last-result.json` records the private backup path and checksums. Public `deployment-status.json` contains only the successful commit, workflow run, publication time and check count. GitHub waits for this receipt and independently verifies the public website, so green deployment status requires actual publication. No forms or email are sent.
 
-To pause, set hosting `ci-agent/config.json` to `{"enabled":false}` and repository variable `LIBERPRO_DEPLOY_ENABLED=false`. To resume, enable both. Re-run a failed main workflow after correcting its cause. Public backups, credentials, portal files and databases must never be added to the repository.
+To pause actual publication, set hosting `ci-agent/config.json` to `{"enabled":false}`. Repository variable `LIBERPRO_DEPLOY_ENABLED=false` additionally pauses GitHub's receipt-verification job; changing that variable alone does not stop the hosting agent. To resume publication and verification, enable both. Re-run a failed main workflow after correcting its cause. Public backups, credentials, portal files and databases must never be added to the repository.
 
 The initial synchronized release may change zero website files while still verifying write permission, saving a backup and recording the release. Source changes after activation require passing both protected main checks.

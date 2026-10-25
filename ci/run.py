@@ -249,6 +249,6 @@ def main():
     ET.ElementTree(suite).write(REPORTS/'junit.xml',encoding='utf-8',xml_declaration=True)
     print(json.dumps({k:v for k,v in summary.items() if k!='checks'},ensure_ascii=False,indent=2))
     if os.environ.get('GITHUB_STEP_SUMMARY'):
-        with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as f:f.write('LiberPro checks: '+summary['status']+'; '+str(summary['passed'])+' passed, '+str(failed)+' failed, '+str(skipped)+' skipped. No deployment.\n')
+        with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as f:f.write('LiberPro validation: '+summary['status']+'; '+str(summary['passed'])+' passed, '+str(failed)+' failed, '+str(skipped)+' skipped. Publication is confirmed separately by the deployment job.\n')
     return 1 if failed else 0
 if __name__=='__main__':sys.exit(main())
