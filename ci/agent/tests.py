@@ -4,9 +4,23 @@ import sys,tempfile,json,io,zipfile,ftplib,os
 HERE=Path(__file__).resolve().parent;sys.path.insert(0,str(HERE));sys.path.insert(0,str(HERE.parent))
 from localftp import LocalFiles
 from deploy import release,sha,MARKER,STATE,read_archive
-from worker import tested_run,source_files,REPOSITORY,WORKFLOW
+from worker import tested_run,source_files,REPOSITORY,WORKFLOW,requested_commit
+import worker,contextlib
 passed=[]
 def check(name,fn):fn();passed.append(name)
+def manual_only():
+    previous_argv=sys.argv;previous_api=worker.api;previous_files=worker.LocalFiles
+    def forbidden(*args):raise AssertionError('Unrequested hosting or GitHub activity')
+    try:
+        sys.argv=['worker.py'];worker.api=forbidden;worker.LocalFiles=forbidden
+        with contextlib.redirect_stdout(io.StringIO()):worker.main()
+    finally:sys.argv=previous_argv;worker.api=previous_api;worker.LocalFiles=previous_files
+check('Without an explicit publication request, perform no hosting or network operations',manual_only)
+assert requested_commit(['--commit','a'*40])=='a'*40;passed.append('Accept a complete explicitly requested commit')
+with contextlib.redirect_stderr(io.StringIO()):
+    try:requested_commit(['--commit','main'])
+    except SystemExit as error:assert error.code==2;passed.append('Reject implicit branches instead of a precise revision')
+    else:raise AssertionError('Implicit deployment accepted')
 def fixture(tmp):
     root=Path(tmp)/'domains/liberpro.pl';(root/'public_html/en').mkdir(parents=True)
     (root/MARKER).write_text(json.dumps({'domain':'liberpro.pl','repository':REPOSITORY,'documentRoot':'public_html','version':1}))
