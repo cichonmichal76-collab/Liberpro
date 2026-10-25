@@ -55,4 +55,15 @@ test('Reject portal, databases, backups, test files and traversal',paths)
 def no_change():
     f=FakeFTP();r=release(f,{'index.html':b'old home','en/index.html':b'old English'},baseline,'release-test-0005',lambda:None);assert r['changedFiles']==0 and r['backup'] in f.files
 test('Initial synchronization still verifies write permission and saves backup',no_change)
+def uncertain_state_commit():
+    class UncertainFTP(FakeFTP):
+        def rename(self,a,b):
+            super().rename(a,b)
+            if a==STATE+'.partial':raise OSError('Connection failed after state rename')
+    f=UncertainFTP();previous=json.dumps({'files':baseline,'release':'previous-release'}).encode();f.files[STATE]=previous
+    try:release(f,new,baseline,'release-test-0006',lambda:None)
+    except RuntimeError as e:assert 'original website restored' in str(e)
+    else:raise AssertionError('Uncertain state commit ignored')
+    assert f.files[STATE]==previous and f.files['public_html/index.html']==b'old home' and f.files['public_html/en/index.html']==b'old English'
+test('Restore files and prior metadata after an uncertain state commit',uncertain_state_commit)
 print(json.dumps({'checksPassed':len(checks),'checks':checks,'productionWrites':0},indent=2))
