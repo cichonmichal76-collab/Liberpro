@@ -3,3 +3,15 @@ liberpro-deploy-*.zip
 liberpro-deploy-*/
 Thumbs.db
 .DS_Store
+node_modules/
+reports/
+playwright-report/
+test-results/
+.env
+*.pem
+*.key
+*.tar.gz
+*.sql
+*.sql.gz
+__pycache__/
+*.pyc

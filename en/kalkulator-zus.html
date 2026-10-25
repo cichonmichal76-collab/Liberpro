@@ -4,14 +4,17 @@
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="nHcUp-OyqRVsvc3NITxvkpltvh7J4jjQkjK78oifIXM">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZUS 2026 calculator | Liber Pro</title>
-<meta name="description" content="ZUS 2026 calculator for entrepreneurs: full ZUS, preferential, Small ZUS Plus and health contribution.">
+<title>Polish ZUS Calculator 2026 | Contributions &amp; Health</title>
+<meta name="description" content="Calculate Polish ZUS contributions for 2026. Compare full ZUS, reduced rates, Mały ZUS Plus and health contributions across the main tax regimes.">
 <link rel="canonical" href="https://www.liberpro.pl/en/kalkulator-zus.html">
 <link rel="alternate" href="https://www.liberpro.pl/kalkulator-zus.html" hreflang="pl"><link rel="alternate" href="https://www.liberpro.pl/en/kalkulator-zus.html" hreflang="en"><link rel="alternate" href="https://www.liberpro.pl/kalkulator-zus.html" hreflang="x-default"><meta property="og:type" content="website">
 <meta property="og:url" content="https://www.liberpro.pl/en/kalkulator-zus.html">
-<meta property="og:title" content="ZUS 2026 calculator | Liber Pro Accounting">
-<meta property="og:description" content="Calculate ZUS contributions for your company. Full, preferential, Small ZUS+, only health insurance - all forms of taxation.">
-<meta property="og:image" content="https://www.liberpro.pl/logo.png">
+<meta property="og:title" content="Polish ZUS Calculator 2026 | Contributions &amp; Health">
+<meta property="og:description" content="Calculate Polish ZUS and health contributions for 2026, including full and reduced rates and Mały ZUS Plus.">
+<meta property="og:image" content="https://www.liberpro.pl/social-cover-2026.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://www.liberpro.pl/social-cover-2026.png">
 <meta property="og:locale" content="en_GB">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
@@ -19,8 +22,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&amp;family=Archivo:wght@300;400;500;600&amp;display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../style.css?v=20260719-9">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -45,8 +48,8 @@
     }
   ]
 }</script>
-<script src="../cookies.js" defer></script>
-<script src="../site.js" defer></script>
+<script src="../cookies.js?v=20260719-9" defer></script>
+<script src="../site.js?v=20260719-9" defer></script>
 
 <style>
 /* ─── kalkulator ZUS ─── */
@@ -185,7 +188,7 @@
 
 <div class="topbar">
   <div class="topbar-i">
-    <span class="topbar-left">Company accounting, human resources and starting a business - service from all over Poland</span>
+    <span class="topbar-left">Accounting, payroll and business registration – services throughout Poland</span>
     <div class="topbar-extras"><span class="topbar-extra">Sole proprietorship setup</span><span class="topbar-extra">Company registration</span></div>
     <div class="topbar-right">
       <a href="#" data-email><svg class="ti" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg><span class="email-text">kontakt(at)liberpro.pl</span></a>
@@ -196,7 +199,7 @@
 
 <nav id="nav">
   <div class="nav-i">
-    <a href="./" class="logo"><img src="../logo.png" alt="Liber Pro Accounting" height="48" width="auto"></a>
+    <a href="./" class="logo"><img src="../logo-display.png" alt="Liber Pro Accounting" width="168" height="48"></a>
     <ul class="nav-links">
       <li><a href="o-nas.html">About us</a></li>
       <li class="has-sub">
@@ -276,10 +279,10 @@
               <label for="r-pelny" class="zus-radio-lbl"><span class="zus-radio-dot"></span>Full</label>
 
               <input type="radio" name="rodzaj" id="r-tylko" value="tylko" class="zus-radio">
-              <label for="r-tylko" class="zus-radio-lbl"><span class="zus-radio-dot"></span>Only health-related</label>
+              <label for="r-tylko" class="zus-radio-lbl"><span class="zus-radio-dot"></span>Health insurance only</label>
             </div>
             <div class="zus-info" id="info-wakacje">
-              <strong>Holidays from ZUS</strong> - If you are using this support, please select an option <em>Only health-related</em>. In this mode, you only pay health insurance contributions, without social contributions.
+              <strong>ZUS contribution holiday</strong> — if ZUS grants the relief for a given month, you still pay your own health contribution. The relief does not cover contributions due for employees or contractors.
             </div>
             <div class="zus-info" id="info-maly" style="display:none">
               <strong>Small ZUS+</strong> — The basis for calculating contributions depends on the average monthly income from the previous year (min. PLN 1,441.80, max. PLN 5,652). Enter your income below.
@@ -343,7 +346,7 @@
           <div style="height:1px;background:#f1f5f9;margin:8px 0 24px"></div>
 
           <!-- results header -->
-          <div class="zus-results-lbl">The amount of your ZUS contributions</div>
+          <div class="zus-results-lbl">Your estimated ZUS contributions</div>
 
           <!-- bookmarks -->
           <div class="zus-tabs">
@@ -427,7 +430,7 @@
 
         <div class="zus-footer">
           <span class="zus-footer-txt">Calculator <strong>Liber Pro Accounting</strong></span>
-          <a href="kontakt.html" class="zus-footer-link">Introductory interview →</a>
+          <a href="kontakt.html" class="zus-footer-link">Contact us →</a>
         </div>
 
       </div><!-- /zus-card -->
@@ -439,26 +442,35 @@
   <div class="cta-i">
     <div class="cta-text">
       <h2>Do you have questions about ZUS contributions?</h2>
-      <p>We will help you choose the optimal form of taxation and take care of your settlements.</p>
+      <p>We can help you compare taxation options and manage your ongoing settlements.</p>
     </div>
-    <a href="kontakt.html" class="btn-white">Initial consultation</a>
+    <a href="kontakt.html" class="btn-white">Contact us</a>
   </div>
 </div>
 
+<section class="cta-section" aria-labelledby="zus-next-step">
+  <div class="cta-i">
+    <div class="cta-text">
+      <h2 id="zus-next-step">What to do with your result</h2>
+      <p>Use the estimate as a starting point for planning your monthly cash flow. Before making a business decision, confirm your individual status, reliefs and the current contribution rules.</p>
+    </div>
+    <a href="uslugi.html" class="btn-white">Explore accounting services</a>
+  </div>
+</section>
 </main>
 
 <footer>
   <div class="footer-grid">
     <div>
-      <img src="../logo.png" alt="Liber Pro Accounting" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
+      <img src="../logo-display.png" alt="Liber Pro Accounting" width="154" height="44" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
       <p class="f-tagline">Your finances are in good hands.<br>Together we build your success.</p>
       <div class="footer-badges">
         <span>Remote and on-site</span>
-        <span>Service from all over Poland</span>
+        <span>Services throughout Poland</span>
       </div>
     </div>
     <div class="f-col">
-      <h4>Shortcuts</h4>
+      <p class="footer-heading">Shortcuts</p>
       <ul class="f-links">
         <li><a href="./">Home</a></li>
         <li><a href="o-nas.html">About us</a></li>
@@ -469,7 +481,7 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Services</h4>
+      <p class="footer-heading">Services</p>
       <ul class="f-links">
         <li><a href="ksiegowosc.html">Accounting</a></li>
         <li><a href="kadry.html">HR and Payroll</a></li>
@@ -478,7 +490,7 @@
       </ul>
     </div>
     <div class="f-col">
-      <h4>Contact</h4>
+      <p class="footer-heading">Contact</p>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"></path></svg><span>Piekary near Krakow</span></div>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg><a href="tel:+48517765128">+48 517-765-128</a></div>
       <div class="f-ci"><svg viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg><a href="#" data-email><span class="email-text">kontakt(at)liberpro.pl</span></a></div>
@@ -494,46 +506,6 @@
 
 <div class="zus-toast" id="zus-toast">Copied to clipboard ✓</div>
 
-<script>function sortBlogByNewest() {
-  var grid = document.getElementById('blogGrid');
-  var cards = Array.from(grid.querySelectorAll('.blog-card'));
-  cards.sort(function(a, b) {
-    var da = a.getAttribute('data-sort-date') || '';
-    var db = b.getAttribute('data-sort-date') || '';
-    return db.localeCompare(da);
-  });
-  cards.forEach(function(card) {
-    card.style.display = '';
-    grid.appendChild(card);
-  });
-}
-
-function filterBlogByKey(key, event) {
-  document.querySelectorAll('.blog-filter').forEach(function(button) {
-    button.classList.remove('active');
-  });
-  if (event && event.currentTarget) {
-    event.currentTarget.classList.add('active');
-  }
-  var cards = Array.from(document.querySelectorAll('#blogGrid .blog-card'));
-  if (key === 'newest') {
-    sortBlogByNewest();
-    return;
-  }
-  cards.forEach(function(card) {
-    var cardKey = card.getAttribute('data-filter-key') || '';
-    card.style.display = key === 'all' || cardKey === key ? '' : 'none';
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.blog-filter').forEach(function(button) {
-    button.addEventListener('click', function(event) {
-      filterBlogByKey(button.getAttribute('data-filter-key') || 'all', event);
-    });
-  });
-  sortBlogByNewest();
-});</script>
-
 </body>
 </html>
+

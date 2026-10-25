@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><style>
+<html lang="en"><head><meta name="robots" content="noindex, follow"><style>
 .kv{font-family:'Archivo',sans-serif;max-width:600px;margin:0 auto;background:#fff;border-radius:16px;border:1px solid #e2e8f0;overflow:hidden;box-shadow:0 4px 32px rgba(10,37,64,.1)}
 .kv-top{background:#0a2540;padding:24px 32px 20px;position:relative;overflow:hidden}
 .kv-top::before{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(46,158,114,.12);pointer-events:none}
@@ -98,48 +98,8 @@
   </div>
   <div class="kv-foot">
     <span class="kv-foot-txt">Calculator <strong>Liber Pro Accounting</strong></span>
-    <a href="https://www.liberpro.pl/kontakt.html" target="_blank">Free consultation</a>
+    <a href="https://www.liberpro.pl/kontakt.html" target="_blank">Contact us</a>
   </div>
 </div>
 
-<script>function sortBlogByNewest() {
-  var grid = document.getElementById('blogGrid');
-  var cards = Array.from(grid.querySelectorAll('.blog-card'));
-  cards.sort(function(a, b) {
-    var da = a.getAttribute('data-sort-date') || '';
-    var db = b.getAttribute('data-sort-date') || '';
-    return db.localeCompare(da);
-  });
-  cards.forEach(function(card) {
-    card.style.display = '';
-    grid.appendChild(card);
-  });
-}
-
-function filterBlogByKey(key, event) {
-  document.querySelectorAll('.blog-filter').forEach(function(button) {
-    button.classList.remove('active');
-  });
-  if (event && event.currentTarget) {
-    event.currentTarget.classList.add('active');
-  }
-  var cards = Array.from(document.querySelectorAll('#blogGrid .blog-card'));
-  if (key === 'newest') {
-    sortBlogByNewest();
-    return;
-  }
-  cards.forEach(function(card) {
-    var cardKey = card.getAttribute('data-filter-key') || '';
-    card.style.display = key === 'all' || cardKey === key ? '' : 'none';
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.blog-filter').forEach(function(button) {
-    button.addEventListener('click', function(event) {
-      filterBlogByKey(button.getAttribute('data-filter-key') || 'all', event);
-    });
-  });
-  sortBlogByNewest();
-});</script>
 <!-- ═══ END OF VAT CALCULATOR ═══ --></body></html>

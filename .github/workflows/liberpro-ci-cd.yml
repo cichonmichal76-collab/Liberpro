@@ -1,0 +1,94 @@
+name: Liber Pro CI/CD
+on:
+  push:
+    branches: [main, codex/liberpro-cicd]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: Deploy tested main branch to liberpro.pl
+        type: boolean
+        default: false
+      restore_backup:
+        description: Optional existing backup filename from ci-backups
+        type: string
+        default: ''
+permissions:
+  contents: read
+concurrency:
+  group: liberpro-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: {node-version: '24'}
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2 pinned
+        with: {php-version: '8.4', extensions: mbstring, coverage: none, tools: none}
+      - name: Website, calculators, consent and real isolated PHP tests
+        run: python3 ci/run.py --require-php
+      - name: Deployment failure and rollback tests
+        run: python3 ci/tests/deployment.py
+      - name: Recent content and tracking regression tests
+        run: node ci/tests/recent.cjs
+      - name: Test summary
+        if: always()
+        run: python3 ci/summary.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with: {name: 'validation-${{ github.run_id }}', path: reports/, retention-days: 14}
+  browser:
+    name: Browser
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with: {node-version: '24', cache: npm}
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: browser-${{ github.run_id }}
+          path: |
+            reports/browser-junit.xml
+            playwright-report/
+            test-results/
+          retention-days: 14
+  deploy:
+    name: Deploy liberpro.pl
+    needs: [validate, browser]
+    if: github.repository == 'cichonmichal76-collab/Liberpro' && github.ref == 'refs/heads/main' && vars.LIBERPRO_DEPLOY_ENABLED == 'true' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    concurrency: {group: liberpro-production, cancel-in-progress: false}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - name: Refuse superseded revisions
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: test "$(gh api repos/cichonmichal76-collab/Liberpro/git/ref/heads/main --jq .object.sha)" = "$GITHUB_SHA"
+      - name: Back up, deploy, verify and automatically restore on failure
+        env:
+          LIBERPRO_FTPS_USER: ${{ secrets.LIBERPRO_FTPS_USER }}
+          LIBERPRO_FTPS_PASSWORD: ${{ secrets.LIBERPRO_FTPS_PASSWORD }}
+          RESTORE_BACKUP: ${{ inputs.restore_backup }}
+        run: |
+          if [ -n "$RESTORE_BACKUP" ]; then
+            python3 ci/deploy.py --restore-backup "$RESTORE_BACKUP"
+          else
+            python3 ci/deploy.py
+          fi
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with: {name: 'deployment-${{ github.run_id }}', path: reports/deployment.json, retention-days: 30}

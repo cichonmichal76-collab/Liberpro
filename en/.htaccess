@@ -1,0 +1,2 @@
+# Localized error page; inherits remaining domain settings.
+ErrorDocument 404 /en/404.html
