@@ -1,4 +1,4 @@
-"""FTPS releases restricted to one marked Liber Pro domain directory.
+"""Release engine restricted to one marked Liber Pro domain directory.
 Back up managed files outside WWW, stage, verify, atomically replace each file,
 run public smoke checks, then record the release. Restore on any failed step.
 """
@@ -11,11 +11,11 @@ MARKER='.liberpro-cicd-target.json';STATE='.liberpro-cicd-state.json'
 def sha(data):return hashlib.sha256(data).hexdigest()
 def safe_path(name):
     p=PurePosixPath(name)
-    if p.is_absolute() or '..' in p.parts or '\\' in name or any(ord(c)<32 for c in name):raise ValueError('Unsafe deployment path')
+    if not p.parts or p.as_posix()!=name or p.is_absolute() or '..' in p.parts or '\\' in name or any(ord(c)<32 for c in name):raise ValueError('Unsafe deployment path')
     if len(p.parts)>2 or (len(p.parts)==2 and p.parts[0]!='en'):raise ValueError('Outside website file scope')
     if p.name=='.htaccess':return name
     if p.name.startswith('.') or p.suffix.lower() not in ['.html','.js','.css','.xml','.txt','.png','.ico','.php']:raise ValueError('Forbidden file type')
-    if p.suffix=='.php' and name!='contact.php':raise ValueError('Only the reviewed contact endpoint may be deployed')
+    if p.suffix.lower()=='.php' and name!='contact.php':raise ValueError('Only the reviewed contact endpoint may be deployed')
     return name
 def get(ftp,path,missing=False):
     out=io.BytesIO()
@@ -106,23 +106,3 @@ def release(ftp,new_files,baseline,release_id,smoke):
         if errors:raise RuntimeError('Deployment failed; manual recovery required for: '+','.join(errors)+'; backup '+backup) from original
         raise RuntimeError('Deployment failed; original website restored; backup '+backup) from original
     return {'status':'PASS','release':release_id,'managedFiles':len(new_files),'changedFiles':len(changes),'backup':backup,'backupSHA256':sha(backup_data),'publicSmoke':'PASS','databaseOperations':0,'portalOperations':0}
-def connect():
-    user=os.environ['LIBERPRO_FTPS_USER']
-    if user!='cicd-liberpro@liberpro.pl':raise RuntimeError('Unexpected deployment user')
-    ftp=ftplib.FTP_TLS(context=ssl.create_default_context(),timeout=45);ftp.connect(HOST,21);ftp.login(user,os.environ['LIBERPRO_FTPS_PASSWORD']);ftp.prot_p();return ftp
-def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--restore-backup');args=parser.parse_args()
-    if os.environ.get('GITHUB_REPOSITORY')!=REPOSITORY or os.environ.get('GITHUB_REF')!='refs/heads/main':raise RuntimeError('Production deployment is restricted to this repository main branch')
-    out=ROOT/'reports';out.mkdir(exist_ok=True)
-    baseline=json.loads((ROOT/'ci/deployment-baseline.json').read_text())
-    with connect() as ftp:
-        if args.restore_backup:
-            if not re.fullmatch(r'[a-zA-Z0-9-]{8,100}\.tar\.gz',args.restore_backup):raise ValueError('Invalid rollback backup name')
-            verify_target(ftp);files=read_archive(get(ftp,'ci-backups/'+args.restore_backup))
-        else:
-            names=json.loads((ROOT/'ci/managed-files.json').read_text(encoding='utf-8'));files={n:(ROOT/safe_path(n)).read_bytes() for n in names}
-        from smoke import check_public
-        release_id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+os.environ.get('GITHUB_RUN_ID','local')+'-'+os.environ.get('GITHUB_RUN_ATTEMPT','1')
-        report=release(ftp,files,baseline,release_id,lambda:check_public(files))
-    (out/'deployment.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report,indent=2))
-if __name__=='__main__':main()

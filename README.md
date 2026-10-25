@@ -10,16 +10,14 @@ Run `python ci/run.py --require-php`, `python ci/tests/deployment.py`, `node ci/
 
 ## Production deployment
 
-After both checks pass, a current main revision can deploy when repository variable `LIBERPRO_DEPLOY_ENABLED` is `true`. Required encrypted Actions secrets are `LIBERPRO_FTPS_USER` and `LIBERPRO_FTPS_PASSWORD`. The dedicated user must be `cicd-liberpro@liberpro.pl`, restricted to the liberpro.pl domain directory. Verified explicit FTPS uses s67.cyber-folks.pl:21. The domain root must contain `.liberpro-cicd-target.json` with exactly:
+The hosting account blocks foreign FTP addresses. Deployment therefore runs as a local hosting pull agent, without disabling FTP protection and without storing hosting credentials in GitHub Actions. A cron job checks the public repository every five minutes. Only a current main push with successful Validate and Browser jobs is eligible. The agent downloads the exact commit over verified HTTPS and reads only allowlisted website files. It never executes programs from downloaded source and never updates its own code.
 
-```json
-{"domain":"liberpro.pl","repository":"cichonmichal76-collab/Liberpro","documentRoot":"public_html","version":1}
-```
+The reviewed agent is installed outside WWW at `/home/liberpro/domains/liberpro.pl/ci-agent/`. Its `config.json` enables or pauses publication. A domain marker outside WWW verifies the repository and document root before operations. Initial hashes come from the verified backup; subsequent releases use the last successful state. Unexpected manual hosting changes stop publication before writes. Reconcile those changes into the repository after review.
 
-The marker and release metadata live outside WWW. The initial file hashes are in `ci/deployment-baseline.json`. Later releases compare against the last successfully deployed hashes. Unexpected manual changes stop deployment before writes; reconcile them into the repository after review rather than bypassing the check.
+Before each release, managed public files are backed up to `ci-backups/` outside WWW. Changed files are staged outside WWW, then replaced by per-file atomic renames. Checksums and 18 public HTTP checks must pass. Failures after publication starts restore previous files and release metadata; failure injection tests cover these paths using real temporary files. This is atomic per file, not one transaction for the whole website. A disk or permission failure can require manual recovery from the identified backup.
 
-Each release first saves and verifies a compressed backup of managed public files in `ci-backups/`, stages changed files in `ci-staging/`, replaces each file by rename and verifies checksums and public HTTP responses. Unmanaged server files are preserved. The initial synchronized release may change zero website files, while still verifying write access, saving a backup and recording the release.
+`ci-agent/last-result.json` records the private backup path and checksums. Public `deployment-status.json` contains only the successful commit, workflow run, publication time and check count. GitHub waits for this receipt and independently verifies the public website, so green deployment status requires actual publication. No forms or email are sent.
 
-On failure after publication starts, the script restores the previous files and release metadata. A complete network outage can prevent automatic restoration; the error identifies the backup and files requiring recovery. Replacements are atomic per file, not one transaction across the entire website. Full pre-activation backup is retained separately outside WWW.
+To pause, set hosting `ci-agent/config.json` to `{"enabled":false}` and repository variable `LIBERPRO_DEPLOY_ENABLED=false`. To resume, enable both. Re-run a failed main workflow after correcting its cause. Public backups, credentials, portal files and databases must never be added to the repository.
 
-To pause deployment set `LIBERPRO_DEPLOY_ENABLED=false`. For a reviewed rollback, run the workflow manually on main with `deploy=true` and `restore_backup` set to an existing filename in `ci-backups/`. Rollback also backs up the current managed files and runs verification. Never publish credentials or backup archives in this public repository.
+The initial synchronized release may change zero website files while still verifying write permission, saving a backup and recording the release. Source changes after activation require passing both protected main checks.
