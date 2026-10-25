@@ -6,13 +6,17 @@ The repository contains the current public liberpro.pl website, synchronized fro
 
 GitHub Actions runs on pull requests and pushes to main. Validation covers HTML, links, sitemap, translations, redirects, calculators including decimal boundary cases, consent, contact tracking and recent content changes. PHP 8.4 executes the actual contact endpoint in an isolated temporary server with a local mail sink: no production form submissions or real emails. Browser tests check mobile, tablet and desktop layouts, navigation, calculators, ZUS keyboard controls and cookie preferences. Failure injection tests cover deployment backups, manual hosting drift and restoration.
 
-Run `python ci/run.py --require-php`, `python ci/tests/deployment.py`, `node ci/tests/recent.cjs` and `npm run test:browser`. PHP 8.4, Node 24, Python 3 and installed Playwright Chromium are required for a complete local run. GitHub provides these tools; nothing is installed on the hosting account by CI.
+Run `python ci/run.py --require-php`, `python ci/tests/deployment.py`, `python ci/agent/tests.py`, `python ci/agent/transaction_tests.py`, `node ci/tests/recent.cjs` and `npm run test:browser`. PHP 8.4, Node 24, Python 3 and installed Playwright Chromium are required for a complete local run. GitHub provides these tools; nothing is installed on the hosting account by CI.
+
+Contact verification and submission each have a 15-second deadline covering the request and JSON response. A timed-out submission keeps the enquiry, unlocks the button and explains that delivery is unconfirmed: the message may already have arrived. It never automatically retries a POST or counts a late response as a lead. Offline tests cover stalled requests, stalled JSON, late success and verification refresh; browser tests exercise the timeout in Polish and English without sending email.
 
 ## Production deployment
 
 Publication is manual and requires a separate instruction from the owner. Pushes and pull requests run automatic tests only. There is no recurring hosting task and no periodic GitHub polling. A workflow started with its default settings also runs tests only.
 
 The reviewed publication tool remains outside WWW at `/home/liberpro/domains/liberpro.pl/ci-agent/`. Its configuration is `{"mode":"manual"}`. Starting `worker.py` without `--commit` exits before any hosting checks or GitHub requests. A publication requires an explicitly supplied complete commit SHA, which must match current main and have successful Validate and Browser jobs. Source data is downloaded over verified HTTPS; downloaded programs are never executed, and the tool never updates itself.
+
+An explicitly requested publication exits nonzero with a reason if required checks are missing, another publication holds the lock, or main changes during download. An already-published revision is an explicit successful no-op.
 
 When the owner explicitly requests publication, first confirm the required tests, then run once on the hosting account:
 
@@ -27,6 +31,10 @@ A domain marker outside WWW verifies the repository and document root. Initial h
 Before each release, managed public files are backed up to `ci-backups/` outside WWW. Changed files are staged outside WWW, then replaced by per-file atomic renames. Checksums and 18 public HTTP checks must pass. Failures after publication starts restore previous files and release metadata; failure injection tests cover these paths using real temporary files. This is atomic per file, not one transaction for the whole website. A disk or permission failure can require manual recovery from the identified backup.
 
 `ci-agent/last-result.json` records the private backup path and checksums. Public `deployment-status.json` contains only the successful commit, workflow run, publication time and check count. GitHub waits for this receipt and independently verifies the public website, so green deployment status requires actual publication. No forms or email are sent.
+
+Both publication records are committed inside the release engine's error handler. A caught failure before or after either atomic record replacement restores website files, the previous release state, and the exact prior record bytes and permissions; records absent before a first publication are removed. Recovery attempts both records even if one cannot be restored, and reports a nonzero manual-recovery error with the private backup location when recovery fails. Private records use mode 0600; the public receipt is mode 0644 before its atomic replacement. This handles caught exceptions, not process termination or power loss; an interrupted process still requires reconciliation from the private backup and state.
+
+The hosting agent does not update itself. Activating a changed release engine requires a separately reviewed, one-off installation of `ci/deploy.py` and `ci/agent/worker.py` together outside WWW before an owner-requested publication. A repository push alone does not install these files on the hosting account.
 
 The former `LIBERPRO_DEPLOY_ENABLED` variable is disabled and no longer controls this manual workflow. Do not re-enable recurring publication or the FTP account as part of ordinary editing. Backups, credentials, portal files and databases must never be added to the public repository.
 

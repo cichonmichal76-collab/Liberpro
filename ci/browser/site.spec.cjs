@@ -59,3 +59,24 @@ test('PIT article is the newest tax post and opens from blog',async({page})=>{
   await page.goto('/blog.html');const first=page.locator('#blogGrid .blog-card').first();await expect(first.locator('h2 a')).toHaveAttribute('href','blog-progi-pit-2027-sejm.html');
   await page.getByRole('button',{name:'Podatki',exact:true}).click();await expect(first).toBeVisible();await first.locator('h2 a').click();await expect(page.locator('.article-table')).toHaveCount(2);await expect(page.locator('main')).toContainText('nowe zasady jeszcze nie obowiązują');
 });
+
+for(const prefix of ['', 'en/'])test('Contact timeout retains enquiry and unlocks submit '+prefix,async({page})=>{
+  await page.clock.install();
+  let posts=0;
+  await page.route('**/contact.php',route=>{posts++;});
+  await page.goto('/'+prefix+'kontakt.html');
+  await expect(page.locator('[name="verification_answer"]')).toBeEnabled();
+  await page.locator('[name="name"]').fill('Browser fixture');
+  await page.locator('[name="email"]').fill('fixture@example.test');
+  const enquiry='An isolated browser enquiry retained after a timeout.';
+  await page.locator('[name="message"]').fill(enquiry);
+  await page.locator('[name="verification_answer"]').fill('7');
+  await page.clock.fastForward(2500);
+  const button=page.locator('.btn-submit');await button.click();await expect(button).toBeDisabled();
+  await expect.poll(()=>posts).toBe(1);
+  await page.clock.fastForward(15001);
+  await expect(button).toBeEnabled();
+  await expect(page.locator('.contact-form-status')).toContainText(prefix?'may have arrived':'Wiadomość mogła dotrzeć');
+  await expect(page.locator('[name="message"]')).toHaveValue(enquiry);
+  expect(posts).toBe(1);
+});
